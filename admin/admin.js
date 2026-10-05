@@ -45,7 +45,8 @@
   const icon = (name) =>
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name] || ''}</svg>`;
 
-  const assetUrl = (u) => (!u ? '' : /^(https?:|data:|\/)/.test(u) ? u : '/' + u);
+  const assetUrl = (u) =>
+    !u ? '' : /^(https?:|data:|\/)/.test(u) ? u : B && B.uploadsBase && /^uploads\//.test(u) ? B.uploadsBase + u.slice(8) : '../' + u;
   const isVideo = (u) => /\.(mp4|webm)(\?|$)/i.test(u || '');
 
   function toast(msg, kind = '') {
@@ -56,16 +57,22 @@
     toast.t = setTimeout(() => (t.className = 'toast'), 2600);
   }
 
-  async function api(url, opts = {}) {
-    const res = await fetch(url, { credentials: 'same-origin', ...opts });
-    if (res.status === 401) {
-      toast('Your session has ended. Please sign in again.', 'is-error');
-      setTimeout(() => (location.href = '/admin/login'), 1500);
-      throw new Error('unauthorised');
+  // Storage backend (local server or GitHub), picked in start(). See backend.js.
+  const BK = window.MFC_BACKEND;
+  let B = null;
+
+  // Runs a backend call; a lost sign-in is reported once and sends you back to sign in.
+  async function call(fn) {
+    try {
+      return await fn();
+    } catch (e) {
+      if (e instanceof BK.AuthError) {
+        toast(e.message, 'is-error');
+        B.onAuthError();
+        e.handled = true;
+      }
+      throw e;
     }
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || 'Request failed');
-    return data;
   }
 
   /* ------------------------------------------------------------ dirty state */
@@ -96,8 +103,8 @@
 
   function pushPreview(focus) {
     const frame = $('#previewFrame');
-    if (!state.previewReady || !frame.contentWindow || state.preview === 'off') return;
-    frame.contentWindow.postMessage({ type: 'mfc:preview', content: state.content, focus: focus || null }, location.origin);
+    if (!state.previewReady || !state.content || !frame.contentWindow || state.preview === 'off') return;
+    frame.contentWindow.postMessage({ type: 'mfc:preview', content: state.content, focus: focus || null, uploadsBase: B && B.uploadsBase }, location.origin);
   }
 
   function focusPreview() {
@@ -129,6 +136,7 @@
     if (e.origin !== location.origin || !e.data) return;
     if (e.data.type === 'mfc:ready') {
       state.previewReady = true;
+      if (!state.content) return;
       if (isDirty()) pushPreview();
       focusPreview();
     }
@@ -526,12 +534,7 @@
     return wrap;
   }
 
-  async function uploadFile(file) {
-    const fd = new FormData();
-    fd.append('file', file);
-    const data = await api('/api/upload', { method: 'POST', body: fd });
-    return data.url;
-  }
+  const uploadFile = (file) => call(() => B.upload(file));
 
   const moveBtns = (arr, i, redraw) => [
     h('button', { type: 'button', class: 'mini', title: 'Move up', disabled: i === 0 ? true : null, onclick: () => { [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; changed(); redraw(); } }, '↑'),
@@ -821,7 +824,7 @@
     const draw = async () => {
       let data;
       try {
-        data = await api('/api/uploads');
+        data = await call(() => B.library());
       } catch (e) {
         body.innerHTML = '';
         body.append(h('p', { class: 'muted' }, e.message));
@@ -844,7 +847,11 @@
                 title: 'Delete file',
                 onclick: async () => {
                   if (!confirm(`Delete ${it.name}? Slides using it will show an empty space.`)) return;
-                  await api('/api/uploads/' + encodeURIComponent(it.name), { method: 'DELETE' });
+                  try {
+                    await call(() => B.remove(it));
+                  } catch (err) {
+                    if (!err.handled) toast(err.message, 'is-error');
+                  }
                   draw();
                 }
               }, '×')
@@ -901,27 +908,39 @@
     const body = h('div', { class: 'stack' }, h('p', { class: 'muted' }, 'Loading…'));
     openModal('Version history', body);
     try {
-      const list = await api('/api/backups');
+      const list = await call(() => B.versions());
       body.innerHTML = '';
-      body.append(h('p', { class: 'muted' }, 'A copy is kept every time you save (last 40). Restoring replaces the live content.'));
+      body.append(
+        h(
+          'p',
+          { class: 'muted' },
+          B.restoreSaves
+            ? 'A copy is kept every time you save (last 40). Restoring replaces the live content.'
+            : 'Every save is a commit on GitHub. Opening an earlier version loads it into the editor; press Save changes to make it live again.'
+        )
+      );
       if (!list.length) body.append(h('p', {}, 'No earlier versions yet.'));
       list.forEach((b) =>
         body.append(
           h(
             'div',
             { class: 'backup-row' },
-            h('span', {}, new Date(b.mtime).toLocaleString()),
+            h('span', {}, new Date(b.date).toLocaleString(), b.label ? h('small', { class: 'muted' }, ' · ' + b.label) : null),
             h('button', {
               type: 'button',
               class: 'btn btn-small',
               onclick: async () => {
                 if (isDirty() && !confirm('You have unsaved changes. Restore this version anyway?')) return;
-                const r = await api(`/api/backups/${encodeURIComponent(b.name)}/restore`, { method: 'POST' });
-                load(r.content);
-                closeModal();
-                toast('Version restored');
+                try {
+                  const restored = await call(() => B.restore(b));
+                  load(restored, { asSaved: B.restoreSaves });
+                  closeModal();
+                  toast(B.restoreSaves ? 'Version restored' : 'Earlier version loaded. Press Save changes to make it live.');
+                } catch (err) {
+                  if (!err.handled) toast(err.message, 'is-error');
+                }
               }
-            }, 'Restore')
+            }, B.restoreSaves ? 'Restore' : 'Open')
           )
         )
       );
@@ -932,6 +951,39 @@
   }
 
   /* ------------------------------------------------------------- save/load */
+
+  // After a GitHub save, follow the publish run so the status shows when the live site has caught up.
+  let publishTimer = null;
+  function followPublish(commit) {
+    clearTimeout(publishTimer);
+    const text = $('.publish-text');
+    const el = $('#publish');
+    el.hidden = false;
+    el.className = 'bar-publish is-running';
+    text.textContent = 'Publishing to the live site…';
+    const started = Date.now();
+    const tick = async () => {
+      const st = await B.publishStatus(commit);
+      if (st.url) el.href = st.url;
+      if (st.state === 'done') {
+        el.className = 'bar-publish is-done';
+        text.textContent = 'Live site updated';
+        return;
+      }
+      if (st.state === 'failed') {
+        el.className = 'bar-publish is-failed';
+        text.textContent = 'Publishing failed. Click for details';
+        return;
+      }
+      if (st.state === 'unknown' || Date.now() - started > 6 * 60 * 1000) {
+        el.className = 'bar-publish';
+        text.textContent = 'Live site updates in about a minute';
+        return;
+      }
+      publishTimer = setTimeout(tick, 6000);
+    };
+    publishTimer = setTimeout(tick, 4000);
+  }
 
   async function save() {
     if (!isDirty()) return;
@@ -945,11 +997,13 @@
     btn.disabled = true;
     btn.textContent = 'Saving…';
     try {
-      await api('/api/content', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(state.content) });
-      state.savedJSON = JSON.stringify(state.content);
-      toast('Saved. The presentation is up to date.');
+      const snapshot = JSON.stringify(state.content);
+      const res = await call(() => B.save(JSON.parse(snapshot)));
+      state.savedJSON = snapshot;
+      toast(res.message);
+      if (res.commit) followPublish(res.commit);
     } catch (e) {
-      if (e.message !== 'unauthorised') toast(e.message, 'is-error');
+      if (!e.handled) toast(e.message, 'is-error');
     } finally {
       btn.textContent = 'Save changes';
       setStatus();
@@ -1021,11 +1075,21 @@
         link.remove();
       }
       if (act === 'import') $('#importInput').click();
+      if (act === 'signout') {
+        if (isDirty() && !confirm('You have unsaved changes. Sign out anyway?')) return;
+        window.onbeforeunload = null;
+        state.savedJSON = JSON.stringify(state.content);
+        B.signOut();
+      }
       if (act === 'reset') {
         if (!confirm('Replace everything with the original content? Nothing is saved until you press Save changes.')) return;
-        const d = await api('/api/content/default');
-        load(d, { asSaved: false });
-        toast('Original content loaded. Press Save changes to keep it.');
+        try {
+          const d = await call(() => B.defaults());
+          load(d, { asSaved: false });
+          toast('Original content loaded. Press Save changes to keep it.');
+        } catch (err) {
+          if (!err.handled) toast(err.message, 'is-error');
+        }
       }
     });
     $('#importInput').addEventListener('change', async (e) => {
@@ -1043,11 +1107,57 @@
     });
   }
 
+  /* GitHub Pages: connect with a fine-grained access token before editing */
+  async function connectGitHub() {
+    const saved = BK.savedConfig();
+    if (saved) return BK.githubBackend(saved);
+    const defaults = await BK.repoDefaults();
+    const gate = $('#gate');
+    const form = $('#gateForm');
+    form.repo.value = defaults.owner && defaults.repo ? `${defaults.owner}/${defaults.repo}` : '';
+    form.branch.value = defaults.branch || 'main';
+    const link = $('#tokenLink');
+    link.href = 'https://github.com/settings/personal-access-tokens/new';
+    gate.hidden = false;
+    document.body.classList.add('is-gated');
+    return new Promise((resolve) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const err = $('#gateError');
+        err.hidden = true;
+        const [owner, repo] = form.repo.value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '').split('/');
+        const cfg = { owner, repo, branch: form.branch.value.trim() || 'main', token: form.token.value.trim() };
+        const btn = form.querySelector('button[type=submit]');
+        btn.disabled = true;
+        btn.textContent = 'Checking…';
+        try {
+          if (!owner || !repo || !cfg.token) throw new Error('Please fill in the repository and the access token.');
+          const backend = BK.githubBackend(cfg);
+          await backend.check();
+          BK.rememberToken(cfg, form.remember.checked);
+          gate.hidden = true;
+          document.body.classList.remove('is-gated');
+          resolve(backend);
+        } catch (ex) {
+          err.textContent = ex.message;
+          err.hidden = false;
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Connect';
+        }
+      });
+    });
+  }
+
   async function start() {
     bindChrome();
     layoutPreview();
+    const mode = await BK.detect();
+    B = mode === 'server' ? BK.serverBackend() : await connectGitHub();
+    document.body.dataset.mode = B.mode;
+    if (B.liveUrl) $('#openSite').href = B.liveUrl;
     try {
-      const content = await api('/api/content');
+      const content = await call(() => B.load());
       load(content);
       select('settings');
     } catch (e) {

@@ -2,23 +2,36 @@
 
 A scroll-driven presentation of the **Digital Media Plan** and the **Social Media Strategy** for Magus Fashion City, with an admin panel for editing every word, number, image and slide.
 
-- **Presentation:** `http://localhost:3000`
-- **Admin panel:** `http://localhost:3000/admin`
+## Live on GitHub Pages
 
-## Run it
+- **Presentation:** https://mayureshsawant21.github.io/magus/
+- **Admin panel:** https://mayureshsawant21.github.io/magus/admin/
+
+Every push to the repository rebuilds the site automatically (`.github/workflows/pages.yml`), and so does every **Save** in the admin panel.
+
+**One-time setup:** in the repository go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+
+### Signing in to the admin panel on GitHub Pages
+
+GitHub Pages cannot run a server, so the admin panel saves your edits straight to the repository using a GitHub access token:
+
+1. Open the admin panel and follow the link to create a **fine-grained token**.
+2. Under **Repository access**, choose **Only select repositories** and pick `magus`.
+3. Under **Permissions → Repository**, set **Contents** to **Read and write**. Optionally, set **Actions** to **Read** so the admin can show when the live site has updated.
+4. Paste the token into the admin panel and press **Connect**.
+
+The token is kept only in your browser. Each save is a commit to `data/content.json`, and uploaded images go to `public/uploads/`. The live site updates about a minute later. The live preview inside the admin panel updates instantly as you type.
+
+## Run it on your own computer (optional)
 
 Requires Node.js 18 or newer.
 
 ```bash
 npm install
-npm start
-```
-
-The default admin password is `magus-admin`. **Change it before putting the site online:**
-
-```bash
 ADMIN_PASSWORD="choose-a-strong-password" npm start
 ```
+
+The presentation opens at `http://localhost:3000` and the admin panel at `http://localhost:3000/admin`, which signs in with that password instead of a token. Without `ADMIN_PASSWORD`, the password is `magus-admin`.
 
 ## Presenting
 
@@ -47,7 +60,7 @@ You can also scroll or swipe normally. To open the presentation at a particular 
 | Path | What it is |
 | --- | --- |
 | `data/content.default.json` | The original content (kept in git) |
-| `data/content.json` | Your saved edits (created on first run, not in git) |
+| `data/content.json` | The current content (what the admin panel edits) |
 | `data/backups/` | Version history |
 | `public/uploads/` | Uploaded images and videos |
 
@@ -59,21 +72,24 @@ DATA_DIR=/var/data/magus UPLOAD_DIR=/var/data/magus/uploads npm start
 
 ## Hosting
 
-**Option 1: with the admin panel.** Deploy as a Node app on Render, Railway, a VPS or similar, running `npm start`. Set `ADMIN_PASSWORD` (and optionally `SESSION_SECRET`, `PORT`, `DATA_DIR`, `UPLOAD_DIR`) as environment variables.
+**GitHub Pages** is set up already (see the top of this file).
 
-**Option 2: static, presentation only.** Make your edits locally, then run:
+**Your own Node server.** Deploy as a Node app on Render, Railway, a VPS or similar, running `npm start`. Set `ADMIN_PASSWORD` (and optionally `SESSION_SECRET`, `PORT`, `DATA_DIR`, `UPLOAD_DIR`) as environment variables.
+
+**Another static host.** Run:
 
 ```bash
 npm run export
 ```
 
-This writes a self-contained copy of the presentation, with your current content, to `dist/`. Upload that folder to any static host (Netlify, Vercel, GitHub Pages, cPanel). The admin panel is not included. Serve it over http(s): opening `index.html` directly from disk will not load the content.
+This writes the presentation, with the current content, plus the admin panel to `dist/`. Upload that folder to any static host. There, the admin panel saves through GitHub as described above. Serve it over http(s): opening `index.html` directly from disk will not load the content.
 
 ## Project layout
 
 ```
 server.js               Express server: content API, uploads, backups, admin login
-admin/                  Admin panel (schema.js defines every editable field)
+admin/                  Admin panel (schema.js defines every editable field; backend.js saves to the server or GitHub)
+.github/workflows/      GitHub Pages publishing
 public/index.html       Presentation shell
 public/js/app.js        Renders the slides from content and runs the scroll animations
 public/css/style.css    Presentation styles

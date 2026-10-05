@@ -1,0 +1,598 @@
+{
+  "settings": {
+    "siteTitle": "Magus Fashion City · Digital Plan & Social Strategy",
+    "metaDescription": "A 30-day digital media plan and a 10-point social media strategy for Magus Fashion City's manufacturing units.",
+    "theme": {
+      "ink": "#0b1638",
+      "navy": "#22428c",
+      "sky": "#0b8bcb",
+      "ivory": "#f4efe6",
+      "accent": "#c99a4f"
+    },
+    "logos": {
+      "primary": "assets/logos/magus-fashion-city.png",
+      "secondary": "assets/logos/magus.png",
+      "presenter": "assets/logos/mayuresh-sawant.png"
+    },
+    "presenter": {
+      "name": "Mayuresh Sawant",
+      "role": "Digital & Marketing"
+    },
+    "currencySymbol": "₹",
+    "showKeyboardHint": true,
+    "showIntroLoader": true
+  },
+  "sections": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Cover",
+      "eyebrow": "Magus Fashion City · Manufacturing Units",
+      "title": "Digital *Media Plan* & Social Media *Strategy*",
+      "subtitle": "A 30-day performance campaign and a 10-point social playbook to bring garment manufacturers home to Magus Fashion City.",
+      "preparedBy": "Prepared by Mayuresh Sawant",
+      "image": "assets/img/hero-city.svg",
+      "scrollHint": "Scroll to begin"
+    },
+    {
+      "id": "project",
+      "type": "intro",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "The Project",
+      "eyebrow": "The Project",
+      "title": "India's first complete *fashion ecosystem*.",
+      "body": "Magus Fashion City is a 74-acre industrial ecosystem in Kongaon, Bhiwandi, built only for fashion, apparel and allied trades. Suvesha brings extra-large galas for bigger players, with goods lifts, truck access and a ready community of manufacturers next door.",
+      "image": "assets/img/aerial-park.svg",
+      "imageCaption": "Master plan · Kongaon, Bhiwandi",
+      "stats": [
+        {
+          "value": "74",
+          "prefix": "",
+          "suffix": "",
+          "label": "Acres of fashion manufacturing"
+        },
+        {
+          "value": "940",
+          "prefix": "",
+          "suffix": "+",
+          "label": "Units already operating"
+        },
+        {
+          "value": "1000",
+          "prefix": "",
+          "suffix": "+",
+          "label": "More units in the pipeline"
+        },
+        {
+          "value": "5",
+          "prefix": "",
+          "suffix": "",
+          "label": "Trade segments served"
+        }
+      ]
+    },
+    {
+      "id": "part-one",
+      "type": "chapter",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Part I · Digital Plan",
+      "number": "01",
+      "eyebrow": "Part One",
+      "title": "Digital *Media Plan*",
+      "subtitle": "Thirty days of paid media across Meta and Google to build awareness and generate qualified leads for manufacturing units.",
+      "image": "assets/img/elevation.svg"
+    },
+    {
+      "id": "brief",
+      "type": "brief",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "Campaign Brief",
+      "eyebrow": "Campaign Brief",
+      "title": "One month. One clear *objective*.",
+      "items": [
+        {
+          "icon": "factory",
+          "label": "Product",
+          "value": "Manufacturing Units"
+        },
+        {
+          "icon": "wallet",
+          "label": "Budget",
+          "value": "₹3 Lakhs"
+        },
+        {
+          "icon": "calendar",
+          "label": "Duration",
+          "value": "30 Days"
+        },
+        {
+          "icon": "target",
+          "label": "Objective",
+          "value": "Awareness & Lead Gen"
+        },
+        {
+          "icon": "megaphone",
+          "label": "Channels",
+          "value": "Meta, Google Search, Demand Gen, YT, DV360"
+        }
+      ],
+      "channels": [
+        "Meta",
+        "Google Search",
+        "Demand Gen",
+        "YouTube",
+        "DV360"
+      ],
+      "image": "assets/img/gala-interior.svg"
+    },
+    {
+      "id": "media-plan",
+      "type": "table",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Media Plan",
+      "eyebrow": "Media Plan",
+      "title": "Where every *rupee* works.",
+      "intro": "Channel-wise split of the 30-day plan, with spends, leads and cost per lead.",
+      "columns": [
+        "Channel",
+        "Platforms",
+        "Campaigns / Ad Groups",
+        "Spends (₹)",
+        "Leads",
+        "CPL (₹)"
+      ],
+      "rows": [
+        [
+          "Meta",
+          "Facebook, Instagram",
+          "Audience+, Language, Location, Age, Business interests, Lookalike, Custom audience",
+          "1,45,000",
+          "68",
+          "2,132"
+        ],
+        [
+          "Google",
+          "Search, Demand Gen, YouTube, DV360",
+          "Brand keywords, Generic keywords, In-market, Affinity, Related apps & websites",
+          "1,30,000",
+          "27",
+          "4,814"
+        ],
+        [
+          "Total",
+          "",
+          "",
+          "2,75,000",
+          "95",
+          "2,895"
+        ]
+      ],
+      "highlightLastRow": true,
+      "chartTitle": "Share",
+      "image": "",
+      "imageCaption": "Original media plan table",
+      "chartColumns": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "meta",
+      "type": "channel",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "Meta Targeting",
+      "eyebrow": "Channel 01",
+      "title": "Meta *Targeting*",
+      "lede": "Reach business owners where they scroll, in their own language, with creatives that show the real product.",
+      "details": [
+        {
+          "label": "Age Group",
+          "value": "25+",
+          "style": "text"
+        },
+        {
+          "label": "Locations",
+          "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
+          "style": "chips"
+        },
+        {
+          "label": "Campaigns / Ad Groups",
+          "value": "Audience+, Language, Location wise, Age wise, Business related interests, Lookalike, Custom audience",
+          "style": "chips"
+        }
+      ],
+      "creativesTitle": "Ad creatives",
+      "creatives": [
+        {
+          "title": "Elevation static",
+          "format": "Static",
+          "image": "assets/img/elevation.svg"
+        },
+        {
+          "title": "Manufacturing garments inside the gala",
+          "format": "Video",
+          "image": "assets/img/gala-interior.svg"
+        },
+        {
+          "title": "How to start a business, for new investors",
+          "format": "Video",
+          "image": "assets/img/investor-talk.svg"
+        },
+        {
+          "title": "Higher rental yield for investors",
+          "format": "Video",
+          "image": "assets/img/rental-yield.svg"
+        },
+        {
+          "title": "Manufacturing setup with property details",
+          "format": "Static",
+          "image": "assets/img/floor-plan.svg"
+        }
+      ],
+      "textAds": [],
+      "adPreview": {
+        "enabled": false,
+        "headline": "",
+        "url": "",
+        "description": "",
+        "sitelinks": []
+      },
+      "metrics": [
+        {
+          "label": "Spends",
+          "value": "145000",
+          "prefix": "₹",
+          "suffix": ""
+        },
+        {
+          "label": "Leads",
+          "value": "68",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "label": "CPL",
+          "value": "2132",
+          "prefix": "₹",
+          "suffix": ""
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "type": "channel",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Google Targeting",
+      "eyebrow": "Channel 02",
+      "title": "Google *Targeting*",
+      "lede": "Capture high-intent searches for galas and factories, then follow up across YouTube, Demand Gen and DV360.",
+      "details": [
+        {
+          "label": "Age Group",
+          "value": "25+",
+          "style": "text"
+        },
+        {
+          "label": "Locations",
+          "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
+          "style": "chips"
+        },
+        {
+          "label": "Campaigns / Ad Groups",
+          "value": "Brand Keywords, Generic Keywords, In-Market Audience, Affinity Audience, Related Apps & Websites",
+          "style": "chips"
+        }
+      ],
+      "creativesTitle": "Ad creatives",
+      "creatives": [
+        {
+          "title": "Elevation static",
+          "format": "Static",
+          "image": "assets/img/elevation.svg"
+        },
+        {
+          "title": "Manufacturing garments inside the gala",
+          "format": "Video",
+          "image": "assets/img/gala-interior.svg"
+        },
+        {
+          "title": "How to start a business, for new investors",
+          "format": "Video",
+          "image": "assets/img/investor-talk.svg"
+        },
+        {
+          "title": "Higher rental yield for investors",
+          "format": "Video",
+          "image": "assets/img/rental-yield.svg"
+        },
+        {
+          "title": "Manufacturing setup with property details",
+          "format": "Static",
+          "image": "assets/img/floor-plan.svg"
+        }
+      ],
+      "textAds": [
+        "Title as per the keywords",
+        "Description same in all the ads",
+        "Sitelinks to increase CTR"
+      ],
+      "adPreview": {
+        "enabled": true,
+        "headline": "Industrial Gala for Sale in Bhiwandi | Magus Fashion City",
+        "url": "magusfashioncity.com › suvesha",
+        "description": "Ready garment manufacturing units in a 74-acre fashion ecosystem. Goods lifts, truck access and 940+ units already operating. Book a site visit today.",
+        "sitelinks": [
+          "Suvesha Galas",
+          "Book a Site Visit",
+          "Floor Plans",
+          "Location"
+        ]
+      },
+      "metrics": [
+        {
+          "label": "Spends",
+          "value": "130000",
+          "prefix": "₹",
+          "suffix": ""
+        },
+        {
+          "label": "Leads",
+          "value": "27",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "label": "CPL",
+          "value": "4814",
+          "prefix": "₹",
+          "suffix": ""
+        }
+      ]
+    },
+    {
+      "id": "keywords",
+      "type": "keywords",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "Google Keywords",
+      "eyebrow": "Google Keywords",
+      "title": "What manufacturers *search for*.",
+      "intro": "Brand terms protect demand we already have. Location and property terms catch owners actively looking for a new unit.",
+      "searchPlaceholder": "Search Google",
+      "keywords": [
+        "magus fashion city",
+        "suvesha magus fashion city",
+        "industrial gala in bhiwandi",
+        "industrial gala for sale in bhiwandi",
+        "gala for sale in bhiwandi",
+        "factory for sale in bhiwandi",
+        "industrial shed in bhiwandi",
+        "industrial property in bhiwandi",
+        "gala in bhiwandi",
+        "industrial gala in thane",
+        "industrial gala for sale in mumbai",
+        "industrial gala in kalyan",
+        "factory for sale in mumbai"
+      ]
+    },
+    {
+      "id": "results",
+      "type": "results",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Results",
+      "eyebrow": "Performance at a glance",
+      "title": "Meta and Google, *side by side*.",
+      "totalBudget": "300000",
+      "channels": [
+        {
+          "name": "Meta",
+          "spend": "145000",
+          "leads": "68"
+        },
+        {
+          "name": "Google",
+          "spend": "130000",
+          "leads": "27"
+        }
+      ],
+      "insights": [
+        "Meta delivered 72% of all leads at less than half of Google's cost per lead.",
+        "Google search captured owners with clear buying intent for galas and factories.",
+        "₹2.75 Lakhs of the ₹3 Lakhs budget deployed, keeping headroom to scale the winner."
+      ]
+    },
+    {
+      "id": "part-two",
+      "type": "chapter",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Part II · Social Strategy",
+      "number": "02",
+      "eyebrow": "Part Two",
+      "title": "Social Media *Strategy*",
+      "subtitle": "10 ways to improve and grow Magus Fashion City's social media presence among garment manufacturers.",
+      "image": "assets/img/testimonial-reel.svg"
+    },
+    {
+      "id": "strategy",
+      "type": "strategy",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "10-Point Playbook",
+      "eyebrow": "The Playbook",
+      "title": "Ten moves to make the page a *business hub*.",
+      "labels": {
+        "what": "What I would do",
+        "why": "Why it would work",
+        "content": "Content I would create"
+      },
+      "points": [
+        {
+          "title": "Position the page as a business hub, not a property ad",
+          "what": "Give every post one of four jobs: proof, ecosystem, business know-how or product. Fix the bio, highlights and visual template to match.",
+          "why": "A factory owner follows a page that helps his business. He scrolls past a page that only shows brochures and prices.",
+          "content": [
+            "A monthly calendar built on the four pillars",
+            "Story highlights: Units, Ecosystem, Suvesha, Visit",
+            "One consistent post template"
+          ],
+          "image": "assets/img/hub.svg"
+        },
+        {
+          "title": "Lead with proof: 940+ units already operating",
+          "what": "Put existing unit owners on camera. Let them tell how the move changed their production, costs and orders.",
+          "why": "The biggest doubt is whether a factory can run well in Bhiwandi. A fellow manufacturer answers that better than any ad.",
+          "content": [
+            "60-second owner testimonial reels",
+            "\"A day inside a unit\" videos",
+            "Before and after the move stories"
+          ],
+          "image": "assets/img/testimonial-reel.svg"
+        },
+        {
+          "title": "Show the real site every week",
+          "what": "Shoot on site weekly and make video the main format. Use real footage of Suvesha and the park in place of renders.",
+          "why": "A manufacturer checks floor space, lifts and truck access before he believes anything. Real video builds trust before the site visit.",
+          "content": [
+            "Suvesha walkthrough reels",
+            "Drone views of the 74 acres",
+            "Construction progress updates",
+            "Goods lift and loading demos"
+          ],
+          "image": "assets/img/aerial-park.svg"
+        },
+        {
+          "title": "Speak the trade's language: Hindi, Gujarati, Marathi",
+          "what": "Make Hindi the main language for video. Add Gujarati and Marathi versions of the best posts. Use plain trade words.",
+          "why": "Garment business in Mumbai is run in these languages. Content in the owner's own language is watched longer and shared more.",
+          "content": [
+            "Hindi reels with English subtitles",
+            "Gujarati and Marathi carousels",
+            "Regional voice-overs on walkthroughs"
+          ],
+          "image": "assets/img/languages.svg"
+        },
+        {
+          "title": "Teach first, sell second",
+          "what": "Run a weekly know-how series on the problems owners face: finance, subsidies, compliance, labour and getting buyers.",
+          "why": "Useful posts get saved and forwarded on WhatsApp. They also show that Magus understands the garment business.",
+          "content": [
+            "\"EMI versus rent\" carousels",
+            "Subsidy and MSME scheme explainers",
+            "Fire and compliance checklists",
+            "Expert Q&A with the advisory team"
+          ],
+          "image": "assets/img/teach.svg"
+        },
+        {
+          "title": "Make content for each trade",
+          "what": "Run one content series for each of the five segments: menswear, womenswear, ethnic wear, kidswear and bags.",
+          "why": "A denim maker and a bag maker have different needs. An owner stops scrolling when he sees his own trade on screen.",
+          "content": [
+            "\"Built for denim units\" style reels",
+            "A sample unit layout for each trade",
+            "Stories of owners from that trade"
+          ],
+          "image": "assets/img/trades.svg"
+        },
+        {
+          "title": "Give each platform one clear job",
+          "what": "Stop posting the same creative everywhere. Set a role and a posting rhythm for each platform, about 4 to 5 posts a week in total.",
+          "why": "Owners use each platform differently. Content made for the platform performs better than one post copied to all of them.",
+          "content": [
+            "Instagram and Facebook: short reels",
+            "YouTube: full walkthroughs",
+            "LinkedIn: exporters and brands",
+            "WhatsApp Channel: weekly updates"
+          ],
+          "image": "assets/img/platforms.svg"
+        },
+        {
+          "title": "Turn events and trade shows into content",
+          "what": "Cover every trade show, on-site exhibition and open day in three stages: before, during and after.",
+          "why": "Events bring real crowds and real faces. Social media carries a one-day event to people who could not attend.",
+          "content": [
+            "Invite posts and countdown stories",
+            "Live stories from the stall",
+            "Visitor interview reels",
+            "Recap video with a site visit offer"
+          ],
+          "image": "assets/img/events.svg"
+        },
+        {
+          "title": "Build a community and reply fast",
+          "what": "Feature the businesses inside the park and tag them. Answer every comment and message within one working hour.",
+          "why": "Featured owners share the post with their own trade contacts, who are the exact audience. Fast replies turn questions into site visits.",
+          "content": [
+            "\"Unit of the week\" spotlights",
+            "Polls and question boxes in stories",
+            "Saved replies for price, size and location"
+          ],
+          "image": "assets/img/community.svg"
+        },
+        {
+          "title": "Boost what works and measure enquiries, not likes",
+          "what": "Put a small budget behind the best organic posts. Retarget people who watched the videos. Review results every month.",
+          "why": "Organic reach alone is small. A post that already did well is a tested ad, so the money goes to proven content.",
+          "content": [
+            "Top reels re-cut as ads",
+            "\"Book a site visit\" on every post",
+            "A one-page monthly report"
+          ],
+          "image": "assets/img/boost.svg"
+        }
+      ]
+    },
+    {
+      "id": "kpis",
+      "type": "kpis",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "What We Track",
+      "eyebrow": "How we will know it is working",
+      "title": "Four numbers to track *every month*.",
+      "items": [
+        {
+          "label": "Reach",
+          "text": "People reached in Mumbai and Thane garment clusters"
+        },
+        {
+          "label": "Interest",
+          "text": "Video views, saves and shares on each post"
+        },
+        {
+          "label": "Enquiries",
+          "text": "Messages, WhatsApp chats and calls from social"
+        },
+        {
+          "label": "Site Visits",
+          "text": "Visits booked by people who came through social"
+        }
+      ]
+    },
+    {
+      "id": "thank-you",
+      "type": "closing",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Thank You",
+      "eyebrow": "Discover. Deliver.",
+      "title": "Thank *you*.",
+      "subtitle": "Let's build the city that dresses India, one enquiry and one site visit at a time.",
+      "contactLines": [
+        "Mayuresh Sawant",
+        "Digital & Marketing"
+      ],
+      "image": "assets/img/hero-city.svg"
+    }
+  ]
+}

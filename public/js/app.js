@@ -30,7 +30,11 @@
   const csv = (v) => String(v ?? '').split(',').map((s) => s.trim()).filter(Boolean);
   const isVideo = (src) => /\.(mp4|webm)(\?|$)/i.test(src || '');
 
-  function media(src, alt, cls = '') {
+  // In the admin preview, files uploaded to GitHub are shown from the repo until the live site rebuilds.
+  const asset = (u) => (u && state.uploadsBase && /^uploads\//.test(u) ? state.uploadsBase + u.slice(8) : u || '');
+
+  function media(raw, alt, cls = '') {
+    const src = asset(raw);
     if (!src) return `<div class="media media--empty ${cls}"><span>Add an image in the admin panel</span></div>`;
     if (isVideo(src)) return `<video class="media ${cls}" src="${esc(src)}" autoplay muted loop playsinline></video>`;
     return `<img class="media ${cls}" src="${esc(src)}" alt="${esc(plain(alt))}" loading="lazy" decoding="async">`;
@@ -59,9 +63,9 @@
       <div class="cover-shade"></div>
     </div>
     <div class="cover-logos" data-reveal>
-      ${c.logos.secondary ? `<img src="${esc(c.logos.secondary)}" alt="Magus" class="logo-invert">` : ''}
+      ${c.logos.secondary ? `<img src="${esc(asset(c.logos.secondary))}" alt="Magus" class="logo-invert">` : ''}
       ${c.logos.secondary && c.logos.primary ? '<span class="logo-divider"></span>' : ''}
-      ${c.logos.primary ? `<img src="${esc(c.logos.primary)}" alt="Magus Fashion City" class="logo-invert">` : ''}
+      ${c.logos.primary ? `<img src="${esc(asset(c.logos.primary))}" alt="Magus Fashion City" class="logo-invert">` : ''}
     </div>
     <div class="slide-inner cover-inner">
       ${s.eyebrow ? `<p class="eyebrow" data-reveal>${esc(s.eyebrow)}</p>` : ''}
@@ -460,7 +464,7 @@
       <div class="closing-logos" data-stagger>
         ${['secondary', 'primary', 'presenter']
           .filter((k) => c.logos[k])
-          .map((k) => `<img src="${esc(c.logos[k])}" alt="${k} logo">`)
+          .map((k) => `<img src="${esc(asset(c.logos[k]))}" alt="${k} logo">`)
           .join('')}
       </div>
       ${list(s.contactLines).length ? `<p class="closing-contact" data-reveal>${list(s.contactLines).map(esc).join('<span>·</span>')}</p>` : ''}
@@ -478,7 +482,7 @@
     if (meta && st.metaDescription) meta.setAttribute('content', st.metaDescription);
     const logo = document.querySelector('.brand-logo');
     if (logo) {
-      logo.src = (st.logos && st.logos.primary) || '';
+      logo.src = asset(st.logos && st.logos.primary);
       logo.hidden = !(st.logos && st.logos.primary);
     }
     const loaderLogo = document.querySelector('.loader-logo');
@@ -1030,6 +1034,7 @@
     // live preview from the admin panel (same origin only)
     window.addEventListener('message', (e) => {
       if (e.origin !== location.origin || !e.data || e.data.type !== 'mfc:preview') return;
+      state.uploadsBase = e.data.uploadsBase || null;
       boot(e.data.content, { keepScroll: !e.data.focus, focus: e.data.focus || null });
     });
     if (IS_PREVIEW && window.parent !== window) window.parent.postMessage({ type: 'mfc:ready' }, location.origin);

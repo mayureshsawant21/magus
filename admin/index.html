@@ -4,26 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Presentation Studio · Magus Fashion City</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
   <header class="bar">
     <div class="bar-brand">
-      <img src="/assets/logos/magus-fashion-city.png" alt="">
+      <img src="../assets/logos/magus-fashion-city.png" alt="">
       <div>
         <strong>Presentation Studio</strong>
         <span>Digital Plan &amp; Social Strategy</span>
       </div>
     </div>
     <div class="bar-status" id="status"><span class="status-dot"></span><span class="status-text">Loading…</span></div>
+    <a class="bar-publish" id="publish" target="_blank" rel="noopener" hidden><span class="publish-dot"></span><span class="publish-text"></span></a>
     <div class="bar-actions">
       <div class="seg" role="group" aria-label="Preview size">
         <button type="button" class="seg-btn is-on" data-preview="desktop" title="Desktop preview">Desktop</button>
         <button type="button" class="seg-btn" data-preview="mobile" title="Phone preview">Phone</button>
         <button type="button" class="seg-btn" data-preview="off" title="Hide preview">Hide</button>
       </div>
-      <a class="btn btn-ghost" href="/" target="_blank" rel="noopener">Open presentation ↗</a>
+      <a class="btn btn-ghost" id="openSite" href="../" target="_blank" rel="noopener">Open presentation ↗</a>
       <div class="menu">
         <button type="button" class="btn btn-ghost" id="moreBtn" aria-haspopup="true">More ▾</button>
         <div class="menu-pop" id="morePop" hidden>
@@ -32,7 +33,7 @@
           <button type="button" data-action="import">Import content (JSON)…</button>
           <button type="button" data-action="reset">Reset to original content…</button>
           <hr>
-          <form method="post" action="/admin/logout"><button type="submit">Sign out</button></form>
+          <button type="button" data-action="signout">Sign out</button>
         </div>
       </div>
       <button type="button" class="btn btn-primary" id="saveBtn" title="Save (Ctrl/Cmd + S)">Save changes</button>
@@ -57,7 +58,7 @@
 
     <section class="preview" id="previewPane">
       <div class="preview-frame-wrap" id="previewWrap">
-        <iframe id="previewFrame" title="Live preview" src="/?preview=1"></iframe>
+        <iframe id="previewFrame" title="Live preview" src="../?preview=1"></iframe>
       </div>
       <p class="preview-note">Live preview updates as you type. Changes go live for everyone after you press <b>Save changes</b>.</p>
     </section>
@@ -70,11 +71,33 @@
     </div>
   </div>
 
+  <div class="gate" id="gate" hidden>
+    <form class="login-card" id="gateForm" autocomplete="off">
+      <img src="../assets/logos/magus-fashion-city.png" alt="Magus Fashion City" class="login-logo">
+      <h1>Presentation Studio</h1>
+      <p class="muted">This site runs on GitHub Pages, so your edits are saved straight to the GitHub repository. Connect once with an access token.</p>
+      <ol class="gate-steps">
+        <li><a id="tokenLink" target="_blank" rel="noopener">Create a fine-grained token on GitHub ↗</a></li>
+        <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick this repository.</li>
+        <li>Under <b>Permissions → Repository</b>, set <b>Contents</b> to <b>Read and write</b>. Optionally set <b>Actions</b> to <b>Read</b> to see when the live site has updated.</li>
+        <li>Generate the token, then paste it below.</li>
+      </ol>
+      <p class="login-error" id="gateError" hidden></p>
+      <label class="field"><span class="field-label">Repository</span><input type="text" name="repo" placeholder="owner/repository" required></label>
+      <label class="field"><span class="field-label">Branch</span><input type="text" name="branch" required></label>
+      <label class="field"><span class="field-label">Access token</span><input type="password" name="token" placeholder="github_pat_…" required></label>
+      <label class="switch"><input type="checkbox" name="remember" checked><span class="switch-track"></span><span class="switch-label">Remember on this device</span></label>
+      <button class="btn btn-primary btn-block" type="submit">Connect</button>
+      <a class="login-back" href="../">← Back to the presentation</a>
+    </form>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <input type="file" id="importInput" accept="application/json,.json" hidden>
 
-  <script src="/js/icons.js"></script>
-  <script src="/admin/schema.js"></script>
-  <script src="/admin/admin.js"></script>
+  <script src="../js/icons.js"></script>
+  <script src="schema.js"></script>
+  <script src="backend.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>

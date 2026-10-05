@@ -1,13 +1,13 @@
 /* Presentation Studio */
 @font-face {
   font-family: 'Manrope';
-  src: url('/vendor/fonts/manrope-latin-wght-normal.woff2') format('woff2');
+  src: url('../vendor/fonts/manrope-latin-wght-normal.woff2') format('woff2');
   font-weight: 200 800;
   font-display: swap;
 }
 @font-face {
   font-family: 'Fraunces';
-  src: url('/vendor/fonts/fraunces-latin-full-normal.woff2') format('woff2');
+  src: url('../vendor/fonts/fraunces-latin-full-normal.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }
@@ -381,6 +381,23 @@ body[data-preview='mobile'] .preview-frame-wrap { border-radius: 28px; border: 8
 }
 .toast.is-on { transform: translate(-50%, 0); opacity: 1; }
 .toast.is-error { background: var(--danger); }
+
+/* publish indicator (GitHub mode) */
+.bar-publish { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 99px; background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 12.5px; text-decoration: none; }
+.bar-publish[hidden] { display: none; }
+.publish-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); }
+.bar-publish.is-running .publish-dot { background: var(--gold); animation: pulse 1.2s ease-in-out infinite; }
+.bar-publish.is-done .publish-dot { background: #5fd197; }
+.bar-publish.is-failed .publish-dot { background: #ff6b5b; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+
+/* GitHub connect screen */
+.gate { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; padding: 24px; overflow-y: auto; background: radial-gradient(ellipse at 30% 20%, #1c2f68, var(--ink) 70%); }
+.gate[hidden] { display: none; }
+.gate .login-card { width: min(520px, 100%); }
+.gate-steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 13px; color: var(--text); }
+.gate-steps a { color: var(--navy); font-weight: 700; }
+body.is-gated { overflow: hidden; }
 
 /* login */
 .login-body { display: grid; place-items: center; min-height: 100vh; padding: 24px; background: radial-gradient(ellipse at 30% 20%, #1c2f68, var(--ink) 70%); }
