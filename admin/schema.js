@@ -83,6 +83,7 @@
         { key: 'intro', label: 'Intro text', type: 'textarea', rows: 2 },
         { key: 'table', label: 'Table', type: 'table' },
         { key: 'highlightLastRow', label: 'Highlight the last row as a total', type: 'toggle' },
+        { key: 'dense', label: 'Compact layout for tables with many columns', type: 'toggle' },
         { key: 'chartColumns', label: 'Show split bars for these columns', type: 'columnPicker', help: 'Only numeric columns make sense here.' },
         { key: 'chartTitle', label: 'Split bar label', type: 'text' },
         { key: 'image', label: 'Reference image (e.g. the original media plan)', type: 'image' },
@@ -100,14 +101,14 @@
         { key: 'metrics', label: 'Headline numbers', type: 'list', itemLabel: 'Number', titleKey: 'label', fields: metricFields },
         { key: 'details', label: 'Targeting details', type: 'list', itemLabel: 'Detail', titleKey: 'label', fields: [
           { key: 'label', label: 'Label', type: 'text', width: 'half' },
-          { key: 'style', label: 'Show as', type: 'select', width: 'half', options: [ { value: 'text', label: 'Large text' }, { value: 'chips', label: 'Chips (comma separated)' } ] },
-          { key: 'value', label: 'Value', type: 'textarea', rows: 2 }
+          { key: 'style', label: 'Show as', type: 'select', width: 'half', options: [ { value: 'text', label: 'Large text' }, { value: 'chips', label: 'Chips (comma separated)' }, { value: 'tiles', label: 'Tiles (comma separated, note in brackets)' } ] },
+          { key: 'value', label: 'Value', type: 'textarea', rows: 2, help: 'For tiles, write each item like: Economic Times (Business news), Fibre2Fashion (Textile trade)' }
         ] },
         { key: 'textAds', label: 'Text ad notes', type: 'strings', itemLabel: 'Note' },
         { key: 'creativesTitle', label: 'Creatives heading', type: 'text' },
         { key: 'creatives', label: 'Ad creatives', type: 'list', itemLabel: 'Creative', titleKey: 'title', fields: [
           { key: 'title', label: 'Title', type: 'text', width: 'half' },
-          { key: 'format', label: 'Format', type: 'select', width: 'half', options: ['Static', 'Video', 'Carousel'] },
+          { key: 'format', label: 'Format', type: 'select', width: 'half', options: ['Static', 'Video', 'Carousel', 'Display', 'Native'] },
           { key: 'image', label: 'Image or video', type: 'image' }
         ] },
         { key: 'adPreview', label: 'Search ad preview', type: 'object', fields: [
@@ -119,6 +120,25 @@
         ] }
       ],
       defaults: { eyebrow: 'Channel', title: 'New *channel*', lede: '', metrics: [], details: [], textAds: [], creativesTitle: 'Ad creatives', creatives: [], adPreview: { enabled: false, headline: '', url: '', description: '', sitelinks: [] } }
+    },
+    totals: {
+      label: 'Overall totals',
+      description: 'Big headline numbers with notes, plus an optional split bar.',
+      fields: [
+        eyebrow,
+        title,
+        { key: 'intro', label: 'Intro text', type: 'textarea', rows: 2 },
+        { key: 'metrics', label: 'Numbers', type: 'list', itemLabel: 'Number', titleKey: 'label', fields: [
+          ...metricFields,
+          { key: 'note', label: 'Note under the number', type: 'text' }
+        ] },
+        { key: 'splitTitle', label: 'Split bar label', type: 'text' },
+        { key: 'split', label: 'Split bar parts', type: 'list', itemLabel: 'Part', titleKey: 'label', fields: [
+          { key: 'label', label: 'Label', type: 'text', width: 'half' },
+          { key: 'value', label: 'Amount (number)', type: 'text', width: 'half' }
+        ] }
+      ],
+      defaults: { eyebrow: 'Overall', title: 'New *totals*', intro: '', metrics: [], splitTitle: '', split: [] }
     },
     keywords: {
       label: 'Keywords',

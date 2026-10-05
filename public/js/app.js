@@ -24,7 +24,9 @@
     const n = parseFloat(String(v ?? '').replace(/[^0-9.\-]/g, ''));
     return Number.isFinite(n) ? n : 0;
   };
-  const fmt = (n) => inr.format(Math.round(n));
+  const fmt = (n, dec = 0) =>
+    dec ? new Intl.NumberFormat('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }).format(n) : inr.format(Math.round(n));
+  const decimals = (v) => ((String(v ?? '').match(/\.(\d+)/) || [0, ''])[1] || '').length;
   const pad = (n) => String(n).padStart(2, '0');
   const list = (v) => (Array.isArray(v) ? v : []);
   const csv = (v) => String(v ?? '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -50,8 +52,10 @@
       ${s.title ? `<h2 class="display split">${rich(s.title)}</h2>` : ''}
     </header>`;
 
-  const counter = (value, prefix = '', suffix = '') =>
-    `<span class="count" data-count="${num(value)}" data-prefix="${esc(prefix)}" data-suffix="${esc(suffix)}">${esc(prefix)}${fmt(num(value))}${esc(suffix)}</span>`;
+  const counter = (value, prefix = '', suffix = '') => {
+    const dec = typeof value === 'number' ? 0 : decimals(value);
+    return `<span class="count" data-count="${num(value)}" data-dec="${dec}" data-prefix="${esc(prefix)}" data-suffix="${esc(suffix)}">${esc(prefix)}${fmt(num(value), dec)}${esc(suffix)}</span>`;
+  };
 
   /* ---------------------------------------------------------------- renderers */
 
@@ -139,7 +143,7 @@
     const rows = list(s.rows);
     const chartCols = list(s.chartColumns).map(Number).filter((n) => n >= 0 && n < cols.length);
     const dataRows = s.highlightLastRow ? rows.slice(0, -1) : rows;
-    const palette = ['var(--sky)', 'var(--accent)', 'var(--ivory)', 'var(--navy-2)', '#8fb7d9', '#e0bd85'];
+    const palette = ['var(--sky)', 'var(--accent)', '#8fb7d9', '#e0bd85', '#b9c7e6', '#d9c3a0'];
     const charts = chartCols
       .map((ci) => {
         const total = dataRows.reduce((a, r) => a + num(r[ci]), 0) || 1;
@@ -150,10 +154,13 @@
             ${dataRows
               .map((r, i) => {
                 const pct = (num(r[ci]) / total) * 100;
-                return `<span class="split-seg" style="--w:${pct.toFixed(2)}%;--c:${palette[i % palette.length]}"><b>${esc(r[0])}</b><i>${Math.round(pct)}%</i></span>`;
+                return `<span class="split-seg${pct < 22 ? ' is-narrow' : ''}" title="${esc(r[0])}: ${esc(r[ci])}" style="--w:${pct.toFixed(2)}%;--c:${palette[i % palette.length]}"><b>${esc(r[0])}</b><i>${Math.round(pct)}%</i></span>`;
               })
               .join('')}
           </div>
+          <div class="split-legend">${dataRows
+            .map((r, i) => `<span><i style="background:${palette[i % palette.length]}"></i>${esc(r[0])} · ${esc(r[ci])}</span>`)
+            .join('')}</div>
         </div>`;
       })
       .join('');
@@ -163,15 +170,15 @@
         ${head(s)}
         ${s.intro ? `<p class="body-lg" data-reveal>${rich(s.intro)}</p>` : ''}
       </div>
-      <div class="plan-table-wrap" data-reveal>
-        <table class="plan-table">
+      <div class="plan-table-wrap${s.dense ? ' plan-table-wrap--dense' : ''}" data-reveal>
+        <table class="plan-table${s.dense ? ' plan-table--dense' : ''}">
           <thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead>
           <tbody>
             ${rows
               .map(
                 (r, ri) => `
               <tr class="${s.highlightLastRow && ri === rows.length - 1 ? 'is-total' : ''}">
-                ${cols.map((c, ci) => `<td data-label="${esc(c)}">${esc(r[ci] ?? '')}</td>`).join('')}
+                ${cols.map((c, ci) => `<td data-label="${esc(c)}"${/^[\s₹\d.,%-]+$/.test(r[ci] || '') ? ' class="num"' : ''}>${esc(r[ci] ?? '')}</td>`).join('')}
               </tr>`
               )
               .join('')}
@@ -220,6 +227,14 @@
               <dd>${
                 d.style === 'chips'
                   ? `<div class="chip-row" data-stagger>${csv(d.value).map((v) => `<span class="chip">${esc(v)}</span>`).join('')}</div>`
+                  : d.style === 'tiles'
+                  ? `<div class="tile-grid" data-stagger>${csv(d.value)
+                      .map((v) => {
+                        const m = v.match(/^(.*?)\s*\((.*)\)\s*$/);
+                        const name = m ? m[1] : v;
+                        return `<span class="tile"><b>${esc(name)}</b>${m ? `<small>${esc(m[2])}</small>` : ''}</span>`;
+                      })
+                      .join('')}</div>`
                   : `<span class="detail-text">${rich(d.value)}</span>`
               }</dd>
             </div>`
@@ -376,6 +391,45 @@
           ? `<ul class="insights">${list(s.insights)
               .map((t, i) => `<li data-reveal><small>${pad(i + 1)}</small><p>${rich(t)}</p></li>`)
               .join('')}</ul>`
+          : ''
+      }
+    </div>`;
+  };
+
+  R.totals = (s, c) => {
+    const split = list(s.split).map((x) => ({ label: x.label, value: num(x.value) }));
+    const total = split.reduce((a, x) => a + x.value, 0) || 1;
+    return `
+    <div class="slide-inner">
+      <div class="table-head">
+        ${head(s)}
+        ${s.intro ? `<p class="body-lg" data-reveal>${rich(s.intro)}</p>` : ''}
+      </div>
+      <div class="totals-grid" style="--n:${list(s.metrics).length || 1}">
+        ${list(s.metrics)
+          .map(
+            (m) => `
+          <div class="total-tile" data-reveal>
+            <span class="metric-label">${esc(m.label)}</span>
+            <span class="total-value">${counter(m.value, m.prefix, m.suffix)}</span>
+            ${m.note ? `<span class="total-note">${rich(m.note)}</span>` : ''}
+          </div>`
+          )
+          .join('')}
+      </div>
+      ${
+        split.length
+          ? `<div class="split-chart totals-split" data-reveal>
+          <div class="split-chart-head"><span>${esc(s.splitTitle || 'Split')}</span><span>Share</span></div>
+          <div class="split-bar">${split
+            .map((x, i) => {
+              const pct = (x.value / total) * 100;
+              return `<span class="split-seg" style="--w:${pct.toFixed(2)}%;--c:${['var(--sky)', 'var(--accent)', '#8fb7d9', '#e0bd85'][i % 4]}"><b>${esc(
+                x.label
+              )} · ${esc(c.currency)}${fmt(x.value)}</b><i>${Math.round(pct)}%</i></span>`;
+            })
+            .join('')}</div>
+        </div>`
           : ''
       }
     </div>`;
@@ -569,12 +623,13 @@
     const end = parseFloat(el.dataset.count) || 0;
     const pre = el.dataset.prefix || '';
     const suf = el.dataset.suffix || '';
+    const dec = Number(el.dataset.dec) || 0;
     const obj = { v: 0 };
     gsap.to(obj, {
       v: end,
       duration: 1.8,
       ease: 'power3.out',
-      onUpdate: () => (el.textContent = pre + fmt(obj.v) + suf),
+      onUpdate: () => (el.textContent = pre + fmt(obj.v, dec) + suf),
       scrollTrigger: { trigger: el, start: 'top 90%', once: true }
     });
   }

@@ -83,7 +83,7 @@
       "number": "01",
       "eyebrow": "Part One",
       "title": "Digital *Media Plan*",
-      "subtitle": "Thirty days of paid media across Meta and Google to build awareness and generate qualified leads for manufacturing units.",
+      "subtitle": "Thirty days of paid media across Meta, Google Search, Demand Gen, YouTube and DV360, split between lead generation and awareness.",
       "image": "assets/img/elevation.svg"
     },
     {
@@ -131,55 +131,263 @@
       "image": "assets/img/gala-interior.svg"
     },
     {
-      "id": "media-plan",
+      "id": "lead-generation",
       "type": "table",
       "enabled": true,
       "theme": "dark",
-      "navLabel": "Media Plan",
-      "eyebrow": "Media Plan",
-      "title": "Where every *rupee* works.",
-      "intro": "Channel-wise split of the 30-day plan, with spends, leads and cost per lead.",
+      "navLabel": "Lead Generation Plan",
+      "eyebrow": "Media Plan · Lead Generation",
+      "title": "Turning spend into *qualified leads*.",
+      "intro": "Three lead generation channels, tracked from click to lead, quality lead (QL) and site visit (SV).",
       "columns": [
         "Channel",
-        "Platforms",
-        "Campaigns / Ad Groups",
-        "Spends (₹)",
+        "Campaign type",
+        "Spends",
+        "Spends%",
+        "CPC",
+        "Clicks",
+        "CTR",
+        "Impressions",
+        "CPM",
+        "CPL",
         "Leads",
-        "CPL (₹)"
+        "CR%",
+        "L2Q%",
+        "QL",
+        "Q2SV%",
+        "SV",
+        "CPQL"
       ],
       "rows": [
         [
-          "Meta",
-          "Facebook, Instagram",
-          "Audience+, Language, Location, Age, Business interests, Lookalike, Custom audience",
-          "1,45,000",
-          "68",
-          "2,132"
-        ],
-        [
-          "Google",
-          "Search, Demand Gen, YouTube, DV360",
-          "Brand keywords, Generic keywords, In-market, Affinity, Related apps & websites",
+          "Meta (Facebook + Instagram)",
+          "Lead ads: instant form with 3 qualifying questions, plus click-to-WhatsApp",
           "1,30,000",
-          "27",
-          "4,814"
+          "57%",
+          "20",
+          "6,500",
+          "1.10%",
+          "5,90,909",
+          "220",
+          "1,900",
+          "68",
+          "1.05%",
+          "12%",
+          "8",
+          "25%",
+          "2",
+          "15,833"
         ],
         [
-          "Total",
+          "Google Search",
+          "Search: Bhiwandi and MMR industrial gala, textile park and brand keywords",
+          "70,000",
+          "30%",
+          "50",
+          "1,400",
+          "5.00%",
+          "28,000",
+          "2,500",
+          "3,500",
+          "20",
+          "1.43%",
+          "25%",
+          "5",
+          "32%",
+          "2",
+          "14,000"
+        ],
+        [
+          "Google Demand Gen",
+          "Remarketing and custom-segment prospecting across Gmail, Discover and YouTube feed",
+          "30,000",
+          "13%",
+          "15",
+          "2,000",
+          "0.80%",
+          "2,50,000",
+          "120",
+          "4,300",
+          "7",
+          "0.35%",
+          "22%",
+          "2",
+          "20%",
+          "0",
+          "19,545"
+        ],
+        [
+          "Lead generation total",
           "",
-          "",
-          "2,75,000",
+          "2,30,000",
+          "100%",
+          "23",
+          "9,900",
+          "1.14%",
+          "8,68,909",
+          "265",
+          "2,411",
           "95",
-          "2,895"
+          "0.96%",
+          "15.5%",
+          "15",
+          "26.9%",
+          "4",
+          "15,598"
         ]
       ],
       "highlightLastRow": true,
+      "dense": true,
+      "chartColumns": [
+        2,
+        10
+      ],
       "chartTitle": "Share",
       "image": "",
-      "imageCaption": "Original media plan table",
+      "imageCaption": ""
+    },
+    {
+      "id": "awareness",
+      "type": "table",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "Awareness Plan",
+      "eyebrow": "Media Plan · Awareness",
+      "title": "Building *familiarity* before the enquiry.",
+      "intro": "Video and display that put Magus Fashion City in front of garment business owners, and fill the retargeting pools that lead generation converts.",
+      "columns": [
+        "Channel",
+        "Format",
+        "Spends",
+        "Spends%",
+        "CPM",
+        "Impressions",
+        "Avg Freq",
+        "Reach",
+        "View rate / CTR",
+        "Views / clicks",
+        "Cost per view / click (INR)"
+      ],
+      "rows": [
+        [
+          "YouTube Ads",
+          "Skippable in-stream and in-feed video, 20 to 30 sec site walkthrough",
+          "30,000",
+          "43%",
+          "110",
+          "2,72,727",
+          "3.0",
+          "90,909",
+          "22.00%",
+          "60,000",
+          "0.50"
+        ],
+        [
+          "DV360",
+          "Display and native on trade, business and regional news sites; retargeting pool for lead gen",
+          "25,000",
+          "36%",
+          "140",
+          "1,78,571",
+          "4.0",
+          "44,643",
+          "0.25%",
+          "446",
+          "56.00"
+        ],
+        [
+          "Meta (Facebook + Instagram)",
+          "Reach and ThruPlay video in Reels and feed",
+          "15,000",
+          "21%",
+          "60",
+          "2,50,000",
+          "3.0",
+          "83,333",
+          "8.00%",
+          "20,000",
+          "0.75"
+        ],
+        [
+          "Awareness total",
+          "",
+          "70,000",
+          "100%",
+          "100",
+          "7,01,299",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "highlightLastRow": true,
+      "dense": true,
       "chartColumns": [
-        3,
-        4
+        2,
+        5
+      ],
+      "chartTitle": "Share",
+      "image": "",
+      "imageCaption": ""
+    },
+    {
+      "id": "overall",
+      "type": "totals",
+      "enabled": true,
+      "theme": "dark",
+      "navLabel": "Overall Totals",
+      "eyebrow": "Lead generation + Awareness",
+      "title": "The whole plan, *in five numbers*.",
+      "intro": "Total investment across both objectives, measured against the leads and quality leads it produces.",
+      "metrics": [
+        {
+          "label": "Spends",
+          "value": "300000",
+          "prefix": "₹",
+          "suffix": "",
+          "note": "Lead generation ₹2,30,000 + Awareness ₹70,000"
+        },
+        {
+          "label": "Leads",
+          "value": "95",
+          "prefix": "",
+          "suffix": "",
+          "note": "Meta 68 · Google Search 20 · Demand Gen 7"
+        },
+        {
+          "label": "CPL",
+          "value": "3158",
+          "prefix": "₹",
+          "suffix": "",
+          "note": "Total spends ÷ leads (lead generation alone: ₹2,411)"
+        },
+        {
+          "label": "Quality leads (QL)",
+          "value": "15",
+          "prefix": "",
+          "suffix": "",
+          "note": "15.5% of leads qualify"
+        },
+        {
+          "label": "CPQL",
+          "value": "20000",
+          "prefix": "₹",
+          "suffix": "",
+          "note": "Total spends ÷ quality leads (lead generation alone: ₹15,598)"
+        }
+      ],
+      "splitTitle": "Spends by objective",
+      "split": [
+        {
+          "label": "Lead generation",
+          "value": "230000"
+        },
+        {
+          "label": "Awareness",
+          "value": "70000"
+        }
       ]
     },
     {
@@ -200,6 +408,11 @@
         {
           "label": "Locations",
           "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
+          "style": "chips"
+        },
+        {
+          "label": "Campaign types",
+          "value": "Instant-form lead ads with 3 qualifying questions, Click-to-WhatsApp, Reach (awareness), ThruPlay video in Reels & feed",
           "style": "chips"
         },
         {
@@ -247,7 +460,7 @@
       "metrics": [
         {
           "label": "Spends",
-          "value": "145000",
+          "value": "130000",
           "prefix": "₹",
           "suffix": ""
         },
@@ -259,7 +472,7 @@
         },
         {
           "label": "CPL",
-          "value": "2132",
+          "value": "1900",
           "prefix": "₹",
           "suffix": ""
         }
@@ -270,10 +483,10 @@
       "type": "channel",
       "enabled": true,
       "theme": "dark",
-      "navLabel": "Google Targeting",
+      "navLabel": "Google Search",
       "eyebrow": "Channel 02",
-      "title": "Google *Targeting*",
-      "lede": "Capture high-intent searches for galas and factories, then follow up across YouTube, Demand Gen and DV360.",
+      "title": "Google Search *Targeting*",
+      "lede": "Capture owners who are already searching for galas, factories and textile parks in Bhiwandi and the MMR.",
       "details": [
         {
           "label": "Age Group",
@@ -287,38 +500,12 @@
         },
         {
           "label": "Campaigns / Ad Groups",
-          "value": "Brand Keywords, Generic Keywords, In-Market Audience, Affinity Audience, Related Apps & Websites",
+          "value": "Brand keywords, Bhiwandi industrial gala, MMR industrial gala, Textile park, Factory & shed for sale",
           "style": "chips"
         }
       ],
       "creativesTitle": "Ad creatives",
-      "creatives": [
-        {
-          "title": "Elevation static",
-          "format": "Static",
-          "image": "assets/img/elevation.svg"
-        },
-        {
-          "title": "Manufacturing garments inside the gala",
-          "format": "Video",
-          "image": "assets/img/gala-interior.svg"
-        },
-        {
-          "title": "How to start a business, for new investors",
-          "format": "Video",
-          "image": "assets/img/investor-talk.svg"
-        },
-        {
-          "title": "Higher rental yield for investors",
-          "format": "Video",
-          "image": "assets/img/rental-yield.svg"
-        },
-        {
-          "title": "Manufacturing setup with property details",
-          "format": "Static",
-          "image": "assets/img/floor-plan.svg"
-        }
-      ],
+      "creatives": [],
       "textAds": [
         "Title as per the keywords",
         "Description same in all the ads",
@@ -339,19 +526,19 @@
       "metrics": [
         {
           "label": "Spends",
-          "value": "130000",
+          "value": "70000",
           "prefix": "₹",
           "suffix": ""
         },
         {
           "label": "Leads",
-          "value": "27",
+          "value": "20",
           "prefix": "",
           "suffix": ""
         },
         {
           "label": "CPL",
-          "value": "4814",
+          "value": "3500",
           "prefix": "₹",
           "suffix": ""
         }
@@ -384,30 +571,184 @@
       ]
     },
     {
-      "id": "results",
-      "type": "results",
+      "id": "youtube",
+      "type": "channel",
       "enabled": true,
       "theme": "dark",
-      "navLabel": "Results",
-      "eyebrow": "Performance at a glance",
-      "title": "Meta and Google, *side by side*.",
-      "totalBudget": "300000",
-      "channels": [
+      "navLabel": "YouTube Targeting",
+      "eyebrow": "Channel 03",
+      "title": "YouTube *Targeting*",
+      "lede": "20 to 30 second site walkthroughs shown to business owners who are already in the market for property, finance and machinery.",
+      "details": [
         {
-          "name": "Meta",
-          "spend": "145000",
-          "leads": "68"
+          "label": "Age Group",
+          "value": "25+",
+          "style": "text"
         },
         {
-          "name": "Google",
-          "spend": "130000",
-          "leads": "27"
+          "label": "Locations",
+          "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
+          "style": "chips"
+        },
+        {
+          "label": "Formats",
+          "value": "Skippable in-stream, In-feed video, 20–30 sec site walkthrough",
+          "style": "chips"
+        },
+        {
+          "label": "In-market audiences (examples)",
+          "value": "Commercial Real Estate, Industrial Property, Business Loans, Business Financial Services, Industrial & Manufacturing Equipment, Sewing & Textile Machinery, Business Insurance",
+          "style": "chips"
+        },
+        {
+          "label": "Affinity audiences (examples)",
+          "value": "Business Professionals, Avid Business News Readers, Avid Investors, Fashionistas, Shoppers: Value Shoppers",
+          "style": "chips"
+        },
+        {
+          "label": "Custom segments",
+          "value": "Searched 'gala for sale in Bhiwandi', Searched 'textile park Mumbai', Visitors of industrial park websites, Lookalike of form leads",
+          "style": "chips"
         }
       ],
-      "insights": [
-        "Meta delivered 72% of all leads at less than half of Google's cost per lead.",
-        "Google search captured owners with clear buying intent for galas and factories.",
-        "₹2.75 Lakhs of the ₹3 Lakhs budget deployed, keeping headroom to scale the winner."
+      "textAds": [],
+      "creativesTitle": "Video creatives",
+      "creatives": [
+        {
+          "title": "Manufacturing garments inside the gala",
+          "format": "Video",
+          "image": "assets/img/gala-interior.svg"
+        },
+        {
+          "title": "How to start a business, for new investors",
+          "format": "Video",
+          "image": "assets/img/investor-talk.svg"
+        },
+        {
+          "title": "Higher rental yield for investors",
+          "format": "Video",
+          "image": "assets/img/rental-yield.svg"
+        },
+        {
+          "title": "Owner story: 940+ units operating",
+          "format": "Video",
+          "image": "assets/img/testimonial-reel.svg"
+        }
+      ],
+      "adPreview": {
+        "enabled": false,
+        "headline": "",
+        "url": "",
+        "description": "",
+        "sitelinks": []
+      },
+      "metrics": [
+        {
+          "label": "Spends",
+          "value": "30000",
+          "prefix": "₹",
+          "suffix": ""
+        },
+        {
+          "label": "Views",
+          "value": "60000",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "label": "CPV",
+          "value": "0.50",
+          "prefix": "₹",
+          "suffix": ""
+        }
+      ]
+    },
+    {
+      "id": "dv360",
+      "type": "channel",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "DV360 Targeting",
+      "eyebrow": "Channel 04",
+      "title": "DV360 *Targeting*",
+      "lede": "Display and native ads on premium business, trade and regional news sites, building a retargeting pool that lead generation converts.",
+      "details": [
+        {
+          "label": "Locations",
+          "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
+          "style": "chips"
+        },
+        {
+          "label": "Formats",
+          "value": "Display banners, Native ads, Retargeting",
+          "style": "chips"
+        },
+        {
+          "label": "Premium business sites",
+          "value": "The Economic Times (Business news), Business Standard (Business news), Mint (Business news), Moneycontrol (Markets & SMEs), Financial Express (Business news), BusinessLine (Industry & trade), CNBC-TV18 (Business news), Business Today (Business news)",
+          "style": "tiles"
+        },
+        {
+          "label": "Manufacturing & textile trade sites",
+          "value": "Fibre2Fashion (Textile & apparel trade), Apparel Resources (Garment manufacturing), Textile Value Chain (Textile industry), Indian Textile Magazine (Textile industry), IndiaMART (B2B marketplace), TradeIndia (B2B marketplace), SMBStory by YourStory (SME stories)",
+          "style": "tiles"
+        },
+        {
+          "label": "Regional news sites",
+          "value": "Lokmat (Marathi), Maharashtra Times (Marathi), Divya Bhaskar (Gujarati), Navbharat Times (Hindi)",
+          "style": "tiles"
+        },
+        {
+          "label": "Audiences",
+          "value": "Business decision makers, SME & MSME owners, Textile & apparel industry, Website visitor retargeting, Video viewer retargeting",
+          "style": "chips"
+        }
+      ],
+      "textAds": [],
+      "creativesTitle": "Display creatives",
+      "creatives": [
+        {
+          "title": "Elevation display banner",
+          "format": "Display",
+          "image": "assets/img/elevation.svg"
+        },
+        {
+          "title": "Manufacturing setup with property details",
+          "format": "Display",
+          "image": "assets/img/floor-plan.svg"
+        },
+        {
+          "title": "Higher rental yield for investors",
+          "format": "Native",
+          "image": "assets/img/rental-yield.svg"
+        }
+      ],
+      "adPreview": {
+        "enabled": false,
+        "headline": "",
+        "url": "",
+        "description": "",
+        "sitelinks": []
+      },
+      "metrics": [
+        {
+          "label": "Spends",
+          "value": "25000",
+          "prefix": "₹",
+          "suffix": ""
+        },
+        {
+          "label": "Impressions",
+          "value": "178571",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "label": "Reach",
+          "value": "44643",
+          "prefix": "",
+          "suffix": ""
+        }
       ]
     },
     {
