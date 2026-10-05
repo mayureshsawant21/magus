@@ -1041,10 +1041,7 @@
       "eyebrow": "Discover. Deliver.",
       "title": "Thank *you*.",
       "subtitle": "Let's build the city that dresses India, one enquiry and one site visit at a time.",
-      "contactLines": [
-        "Mayuresh Sawant",
-        "Digital & Marketing"
-      ],
+      "contactLines": [],
       "image": "assets/img/hero-city.svg"
     }
   ]

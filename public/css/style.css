@@ -1250,7 +1250,8 @@ body.is-loading { overflow: hidden; }
 .closing-inner { display: flex; flex-direction: column; align-items: center; padding-left: calc(var(--gutter) + var(--rail)); }
 .closing-inner .eyebrow::after { content: ''; width: 34px; border-top: 1.5px dashed currentColor; }
 .slide[data-theme='light'] .closing-inner .display em { color: var(--navy); }
-.closing-inner .lede { text-align: center; }
+.closing-inner .lede { text-align: center; max-width: none; }
+@media (min-width: 1000px) { .closing-inner .lede { white-space: nowrap; } }
 /* every logo sits in an identical box, so all three read the same size with equal gaps */
 .closing-logos {
   display: grid;
