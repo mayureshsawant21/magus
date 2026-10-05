@@ -1247,13 +1247,21 @@ body.is-loading { overflow: hidden; }
 .slide[data-theme='dark'] .closing-bg { opacity: 0.45; }
 .closing-bg .media { object-position: 50% 100%; }
 .closing-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, var(--bg) 25%, color-mix(in srgb, var(--bg) 40%, transparent) 70%), linear-gradient(to top, transparent, var(--bg) 65%); }
-.closing-inner { display: flex; flex-direction: column; align-items: center; }
+.closing-inner { display: flex; flex-direction: column; align-items: center; padding-left: calc(var(--gutter) + var(--rail)); }
 .closing-inner .eyebrow::after { content: ''; width: 34px; border-top: 1.5px dashed currentColor; }
 .slide[data-theme='light'] .closing-inner .display em { color: var(--navy); }
 .closing-inner .lede { text-align: center; }
-.closing-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(28px, 5vw, 70px); margin-top: clamp(48px, 8vh, 80px); }
-.closing-logos img { height: clamp(48px, 7vw, 84px); width: auto; }
-.closing-logos img.logo--presenter { height: clamp(76px, 11vw, 132px); margin: -14px 0; }
+/* every logo sits in an identical box, so all three read the same size with equal gaps */
+.closing-logos {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(110px, 15vw, 210px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: clamp(48px, 8vh, 80px);
+}
+.closing-logos img { width: 100%; height: clamp(46px, 6.2vw, 86px); object-fit: contain; }
 .closing-contact { margin: 36px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 .closing-contact span { margin: 0 12px; color: var(--accent); }
 .slide[data-theme='dark'] .closing-logos img { filter: brightness(0) invert(1); }

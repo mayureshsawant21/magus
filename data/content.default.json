@@ -983,18 +983,18 @@
           "wide": false
         },
         {
-          "icon": "handshake",
-          "title": "Trade association tie-ups",
-          "text": "Co-host seminars on finance, compliance and exports with garment and textile associations, with Magus Fashion City as the venue partner.",
-          "chips": "CMAI, Textile associations, MSME chambers",
+          "icon": "chat",
+          "title": "WhatsApp automation",
+          "text": "Every lead from ads, the website or a QR scan lands in an automated WhatsApp flow: an instant brochure and walkthrough video, three qualifying questions, a site-visit slot picker and reminders. Hot leads go straight to sales, the rest get a weekly nurture message.",
+          "chips": "Instant brochure & video, Lead qualification, Visit booking & reminders, Nurture broadcasts",
           "tag": "New idea",
           "wide": false
         },
         {
-          "icon": "rupee",
-          "title": "On-site finance desk",
-          "text": "Partner with banks and NBFCs for pre-approved MSME loans, promoted in ads and available at expos and site visits.",
-          "chips": "MSME loans, Pre-approved offers, Subsidy guidance",
+          "icon": "users",
+          "title": "Webinars on investing & setting up a garment unit",
+          "text": "Monthly online sessions: how to invest in industrial property and how to set up a garment business, with experts on finance, subsidies and operations. Each session ends with a Magus Fashion City walkthrough and an attendee-only offer, so every registration becomes a lead.",
+          "chips": "Registrations as leads, Expert panel, Live unit walkthrough, Attendee-only offer",
           "tag": "New idea",
           "wide": false
         },
@@ -1007,18 +1007,18 @@
           "wide": false
         },
         {
-          "icon": "chat",
-          "title": "WhatsApp-first follow-up",
-          "text": "Every click-to-WhatsApp lead gets the brochure, a video walkthrough and a visit-slot picker instantly, so no lead waits for a call.",
-          "chips": "Auto brochure, Visit booking, Weekly broadcast",
+          "icon": "megaphone",
+          "title": "SMS, RCS & email marketing",
+          "text": "Low-cost reach to owners who are not on social media. SMS for short offers and site-visit invites, RCS for rich branded messages with images and a Book visit button, and email for brochures, floor plans and webinar invites.",
+          "chips": "SMS offers & invites, RCS rich cards with buttons, Email brochures & newsletters",
           "tag": "New idea",
           "wide": false
         },
         {
-          "icon": "billboard",
-          "title": "Hoardings on the trade route",
-          "text": "Hoardings and transit ads where owners travel every day: the highway into Bhiwandi and the stations near Mumbai's textile markets.",
-          "chips": "Mumbai–Nashik highway, Bhiwandi bypass, Textile market stations",
+          "icon": "layers",
+          "title": "Data buying for pre-sales & campaigns",
+          "text": "Buy verified databases of garment manufacturers, traders, MSME owners and investors in Mumbai, Thane and Bhiwandi. The pre-sales team calls the best matches, and the same lists feed the SMS, RCS and email campaigns. Source only consented, DND-scrubbed data.",
+          "chips": "Garment manufacturers & traders, MSME owners, Investors, Pre-sales calling, SMS/RCS/Email lists",
           "tag": "New idea",
           "wide": false
         },
