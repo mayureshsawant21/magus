@@ -6,7 +6,8 @@
 
   const ICONS = [
     'factory', 'wallet', 'calendar', 'target', 'megaphone', 'users', 'pin', 'chart', 'search', 'play',
-    'globe', 'layers', 'sparkle', 'check', 'star', 'rupee', 'needle'
+    'globe', 'layers', 'sparkle', 'check', 'star', 'rupee', 'needle',
+    'tent', 'newspaper', 'building', 'file', 'chat', 'bus', 'handshake', 'calculator', 'gift', 'billboard'
   ];
 
   const eyebrow = { key: 'eyebrow', label: 'Eyebrow', type: 'text', help: 'Small uppercase label above the heading.' };
@@ -188,6 +189,34 @@
         ] }
       ],
       defaults: { eyebrow: 'Playbook', title: 'New *strategy*', labels: { what: 'What I would do', why: 'Why it would work', content: 'Content I would create' }, points: [] }
+    },
+    insights: {
+      label: 'Insight cards',
+      description: 'Cards with an icon, text and chips, plus an optional second group of ideas.',
+      fields: [
+        eyebrow,
+        title,
+        { key: 'intro', label: 'Intro text', type: 'textarea', rows: 2 },
+        { key: 'items', label: 'Cards', type: 'list', itemLabel: 'Card', titleKey: 'title', fields: [
+          { key: 'icon', label: 'Icon', type: 'icon', options: ICONS },
+          { key: 'title', label: 'Title', type: 'text', accent: true },
+          { key: 'text', label: 'Description', type: 'textarea', rows: 3 },
+          { key: 'chips', label: 'Chips (comma separated)', type: 'textarea', rows: 2 },
+          { key: 'tag', label: 'Badge (optional)', type: 'text', width: 'half' },
+          { key: 'wide', label: 'Wide card', type: 'toggle', width: 'half' }
+        ] },
+        { key: 'ideasTitle', label: 'Second group heading', type: 'text', accent: true },
+        { key: 'ideasIntro', label: 'Second group intro', type: 'textarea', rows: 2 },
+        { key: 'ideas', label: 'Second group cards', type: 'list', itemLabel: 'Idea', titleKey: 'title', fields: [
+          { key: 'icon', label: 'Icon', type: 'icon', options: ICONS },
+          { key: 'title', label: 'Title', type: 'text', accent: true },
+          { key: 'text', label: 'Description', type: 'textarea', rows: 3 },
+          { key: 'chips', label: 'Chips (comma separated)', type: 'textarea', rows: 2 },
+          { key: 'tag', label: 'Badge (optional)', type: 'text', width: 'half' },
+          { key: 'wide', label: 'Wide card', type: 'toggle', width: 'half' }
+        ] }
+      ],
+      defaults: { eyebrow: 'Insights', title: 'New *insights*', intro: '', items: [], ideasTitle: '', ideasIntro: '', ideas: [] }
     },
     kpis: {
       label: 'KPI funnel',

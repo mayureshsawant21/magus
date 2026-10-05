@@ -473,6 +473,35 @@
     </div>`;
   };
 
+  const insightCards = (items, start = 0) =>
+    list(items)
+      .map(
+        (it, i) => `
+      <article class="insight${it.wide ? ' insight--wide' : ''}" data-insight>
+        ${it.tag ? `<span class="insight-tag">${esc(it.tag)}</span>` : ''}
+        <div class="insight-top"><span class="insight-icon">${icon(it.icon)}</span><span class="insight-num">${pad(start + i + 1)}</span></div>
+        <h3>${rich(it.title)}</h3>
+        ${it.text ? `<p>${rich(it.text)}</p>` : ''}
+        ${csv(it.chips).length ? `<div class="chip-row">${csv(it.chips).map((x) => `<span class="chip">${esc(x)}</span>`).join('')}</div>` : ''}
+      </article>`
+      )
+      .join('');
+
+  R.insights = (s) => `
+    <div class="slide-inner">
+      <div class="table-head">
+        ${head(s)}
+        ${s.intro ? `<p class="body-lg" data-reveal>${rich(s.intro)}</p>` : ''}
+      </div>
+      <div class="insight-grid">${insightCards(s.items)}</div>
+      ${
+        list(s.ideas).length
+          ? `<div class="insights-sub" data-reveal><h3>${rich(s.ideasTitle || 'More ideas')}</h3>${s.ideasIntro ? `<p>${rich(s.ideasIntro)}</p>` : ''}</div>
+        <div class="insight-grid">${insightCards(s.ideas, list(s.items).length)}</div>`
+          : ''
+      }
+    </div>`;
+
   R.kpis = (s) => {
     const items = list(s.items);
     const n = items.length || 1;
@@ -518,7 +547,7 @@
       <div class="closing-logos" data-stagger>
         ${['secondary', 'primary', 'presenter']
           .filter((k) => c.logos[k])
-          .map((k) => `<img src="${esc(asset(c.logos[k]))}" alt="${k} logo">`)
+          .map((k) => `<img src="${esc(asset(c.logos[k]))}" alt="${k} logo" class="logo--${k}">`)
           .join('')}
       </div>
       ${list(s.contactLines).length ? `<p class="closing-contact" data-reveal>${list(s.contactLines).map(esc).join('<span>·</span>')}</p>` : ''}
@@ -730,6 +759,18 @@
           ease: 'expo.out',
           stagger: 0.09,
           scrollTrigger: { trigger: row, start: 'top 85%' }
+        });
+      });
+
+      // insight cards rise in a cascade
+      deck.querySelectorAll('.insight-grid').forEach((grid) => {
+        gsap.from(grid.querySelectorAll('[data-insight]'), {
+          y: 60,
+          autoAlpha: 0,
+          duration: 1.1,
+          ease: 'expo.out',
+          stagger: 0.08,
+          scrollTrigger: { trigger: grid, start: 'top 85%' }
         });
       });
 

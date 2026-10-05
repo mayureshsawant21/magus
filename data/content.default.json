@@ -921,6 +921,118 @@
       ]
     },
     {
+      "id": "additional-insights",
+      "type": "insights",
+      "enabled": true,
+      "theme": "light",
+      "navLabel": "Additional Insights",
+      "eyebrow": "Additional Insights",
+      "title": "Beyond digital: more ways to *fill the pipeline*.",
+      "intro": "Offline, partnership and on-ground moves that work alongside the paid plan to add leads and awareness.",
+      "items": [
+        {
+          "icon": "tent",
+          "title": "Business, manufacturing and property expos",
+          "text": "Take a Magus Fashion City stall where garment owners and investors already gather. Book site visits on the spot, then carry the event to social media.",
+          "chips": "Gartex Texprocil India, CMAI National Garment Fair, India International Garment Fair, MCHI-CREDAI Property Expo, Times Property Expo",
+          "tag": "",
+          "wide": false
+        },
+        {
+          "icon": "newspaper",
+          "title": "Banner ads on premium news sites",
+          "text": "High-visibility display on the sites business owners read every day, bought directly or through DV360 private deals.",
+          "chips": "Moneycontrol, Times of India, Economic Times, Business Standard, CNBC-TV18, India Today, Hindustan Times, NDTV, Mint, The Hindu, Zee Business, Times Internet network",
+          "tag": "",
+          "wide": false
+        },
+        {
+          "icon": "building",
+          "title": "Portal listings and ads",
+          "text": "List every gala size with photos, floor plans and price bands, and run featured listings where buyers compare industrial property.",
+          "chips": "99acres, MagicBricks, Housing.com, Square Yards, IndiaMART",
+          "tag": "",
+          "wide": false
+        },
+        {
+          "icon": "file",
+          "title": "2-page brochure for large garment retailers",
+          "text": "A crisp two-page leave-behind for large garment retailers and their supplier networks, building awareness among the manufacturers they buy from.",
+          "chips": "QR code to book a site visit, Unique QR per retailer to track leads, Follow-up call within 48 hours",
+          "tag": "",
+          "wide": false
+        }
+      ],
+      "ideasTitle": "More ways to *generate leads*",
+      "ideasIntro": "Suggested additions that turn existing owners, partners and everyday moments into enquiries.",
+      "ideas": [
+        {
+          "icon": "bus",
+          "title": "Weekend site-visit shuttles",
+          "text": "Free Saturday pickup from Mumbai's garment clusters to Bhiwandi, with a guided walkthrough and lunch. It removes the biggest barrier to a visit: the trip itself.",
+          "chips": "Dharavi, Kalbadevi, Andheri, Ulhasnagar",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "gift",
+          "title": "Refer-a-manufacturer rewards",
+          "text": "940+ operating units know other manufacturers. Reward owners and brokers for every referral that books a unit.",
+          "chips": "Unit owners, Channel partners & brokers, Trade suppliers",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "handshake",
+          "title": "Trade association tie-ups",
+          "text": "Co-host seminars on finance, compliance and exports with garment and textile associations, with Magus Fashion City as the venue partner.",
+          "chips": "CMAI, Textile associations, MSME chambers",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "rupee",
+          "title": "On-site finance desk",
+          "text": "Partner with banks and NBFCs for pre-approved MSME loans, promoted in ads and available at expos and site visits.",
+          "chips": "MSME loans, Pre-approved offers, Subsidy guidance",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "calculator",
+          "title": "EMI vs rent calculator",
+          "text": "An online calculator that compares the monthly EMI with current rent, then sends the full breakdown on WhatsApp. A lead magnet that also qualifies buyers.",
+          "chips": "Website, WhatsApp, QR on brochures",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "chat",
+          "title": "WhatsApp-first follow-up",
+          "text": "Every click-to-WhatsApp lead gets the brochure, a video walkthrough and a visit-slot picker instantly, so no lead waits for a call.",
+          "chips": "Auto brochure, Visit booking, Weekly broadcast",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "billboard",
+          "title": "Hoardings on the trade route",
+          "text": "Hoardings and transit ads where owners travel every day: the highway into Bhiwandi and the stations near Mumbai's textile markets.",
+          "chips": "Mumbai–Nashik highway, Bhiwandi bypass, Textile market stations",
+          "tag": "New idea",
+          "wide": false
+        },
+        {
+          "icon": "play",
+          "title": "Hindi business creators",
+          "text": "Sponsored walkthroughs with Hindi business and startup YouTubers who explain how to set up a garment unit.",
+          "chips": "YouTube, Instagram Reels",
+          "tag": "New idea",
+          "wide": false
+        }
+      ]
+    },
+    {
       "id": "thank-you",
       "type": "closing",
       "enabled": true,

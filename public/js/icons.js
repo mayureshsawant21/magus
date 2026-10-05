@@ -1,5 +1,15 @@
 /* Line icons shared by the presentation and the admin icon picker (24px grid, 1.5 stroke). */
 window.MFC_ICON_PATHS = {
+  tent: '<path d="M3 20h18"/><path d="M12 4L4 20M12 4l8 16"/><path d="M12 4v-1"/><path d="M9.5 20l2.5-6 2.5 6"/>',
+  newspaper: '<rect x="3.5" y="5" width="14" height="14" rx="1.5"/><path d="M17.5 9H20v8.5a1.5 1.5 0 0 1-3 0"/><path d="M7 9h7M7 12.5h7M7 16h4"/>',
+  building: '<path d="M5 20V5.5A1.5 1.5 0 0 1 6.5 4h7A1.5 1.5 0 0 1 15 5.5V20"/><path d="M15 10h3.5A1.5 1.5 0 0 1 20 11.5V20"/><path d="M3 20h18M8.5 8h3M8.5 11.5h3M8.5 15h3"/>',
+  file: '<path d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9.5A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M14 3.5V8h4M9 12.5h6M9 16h4"/>',
+  chat: '<path d="M4 18.5l1.2-3.6A7.5 7.5 0 1 1 8.6 18z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/>',
+  bus: '<rect x="4.5" y="4" width="15" height="13" rx="2.5"/><path d="M4.5 11h15M8 17v2.5M16 17v2.5"/><circle cx="8" cy="14" r=".8"/><circle cx="16" cy="14" r=".8"/>',
+  handshake: '<path d="M3 11l4-4 3 1 2-2 3 1 6 5"/><path d="M7 7l-4 4 6 6a1.6 1.6 0 0 0 2.3 0l.7-.7.6.6a1.6 1.6 0 0 0 2.3 0l3.1-3.1"/><path d="M11 13l2 2M13 11l2 2"/>',
+  calculator: '<rect x="5.5" y="3.5" width="13" height="17" rx="2"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01"/>',
+  gift: '<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11"/><path d="M12 9c-2-4-6-4-6-1.5S9 9 12 9zM12 9c2-4 6-4 6-1.5S15 9 12 9z"/>',
+  billboard: '<rect x="3" y="4" width="18" height="10" rx="1.5"/><path d="M8 14v6M16 14v6M6 20h12"/><path d="M7 8h6M7 11h4"/>',
   factory: '<path d="M3 21V10l5 3.5V10l5 3.5V6l8 3.5V21z"/><path d="M7 17h2M11 17h2M15 17h2"/>',
   wallet: '<path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 7V6a2 2 0 0 1 2-2h10"/><path d="M15.5 13.5h1.5"/>',
   calendar: '<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',
