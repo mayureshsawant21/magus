@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -29,6 +30,19 @@ jobs:
           node-version: 20
       - name: Build static site
         run: node scripts/export-static.js
+      # If Settings → Pages → Source is still "Deploy from a branch", GitHub also publishes the raw
+      # repository (the README) on every push. Wait for that build so this deploy lands last.
+      - name: Wait for GitHub's branch build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sleep 15
+          for i in $(seq 1 40); do
+            pending=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA&per_page=20" \
+              --jq '[.workflow_runs[] | select(.path | startswith("dynamic/pages")) | select(.status != "completed")] | length' || echo 0)
+            [ "$pending" = "0" ] && break
+            echo "Branch build still running…"; sleep 10
+          done
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
