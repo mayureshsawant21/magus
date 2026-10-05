@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentation Studio · Magus Fashion City</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-brand">
+      <img src="/assets/logos/magus-fashion-city.png" alt="">
+      <div>
+        <strong>Presentation Studio</strong>
+        <span>Digital Plan &amp; Social Strategy</span>
+      </div>
+    </div>
+    <div class="bar-status" id="status"><span class="status-dot"></span><span class="status-text">Loading…</span></div>
+    <div class="bar-actions">
+      <div class="seg" role="group" aria-label="Preview size">
+        <button type="button" class="seg-btn is-on" data-preview="desktop" title="Desktop preview">Desktop</button>
+        <button type="button" class="seg-btn" data-preview="mobile" title="Phone preview">Phone</button>
+        <button type="button" class="seg-btn" data-preview="off" title="Hide preview">Hide</button>
+      </div>
+      <a class="btn btn-ghost" href="/" target="_blank" rel="noopener">Open presentation ↗</a>
+      <div class="menu">
+        <button type="button" class="btn btn-ghost" id="moreBtn" aria-haspopup="true">More ▾</button>
+        <div class="menu-pop" id="morePop" hidden>
+          <button type="button" data-action="backups">Version history…</button>
+          <button type="button" data-action="export">Download content (JSON)</button>
+          <button type="button" data-action="import">Import content (JSON)…</button>
+          <button type="button" data-action="reset">Reset to original content…</button>
+          <hr>
+          <form method="post" action="/admin/logout"><button type="submit">Sign out</button></form>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="saveBtn" title="Save (Ctrl/Cmd + S)">Save changes</button>
+    </div>
+  </header>
+
+  <div class="layout" id="layout">
+    <aside class="side">
+      <button type="button" class="side-item side-settings" data-select="settings">
+        <span class="side-num">⚙</span>
+        <span class="side-text"><strong>Global settings</strong><small>Logos, colours, presenter</small></span>
+      </button>
+      <div class="side-head">
+        <span>Slides</span>
+        <button type="button" class="btn btn-small" id="addSectionBtn">+ Add slide</button>
+      </div>
+      <ol class="side-list" id="sideList"></ol>
+      <p class="side-tip">Drag to reorder. Click the eye to hide a slide without deleting it.</p>
+    </aside>
+
+    <main class="editor" id="editor"></main>
+
+    <section class="preview" id="previewPane">
+      <div class="preview-frame-wrap" id="previewWrap">
+        <iframe id="previewFrame" title="Live preview" src="/?preview=1"></iframe>
+      </div>
+      <p class="preview-note">Live preview updates as you type. Changes go live for everyone after you press <b>Save changes</b>.</p>
+    </section>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <header class="modal-head"><h2 id="modalTitle"></h2><button type="button" class="icon-x" data-close aria-label="Close">×</button></header>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="importInput" accept="application/json,.json" hidden>
+
+  <script src="/js/icons.js"></script>
+  <script src="/admin/schema.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

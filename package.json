@@ -1,0 +1,19 @@
+{
+  "name": "magus-presentation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Magus Fashion City: Digital Media Plan & Social Media Strategy. Scroll presentation with an admin CMS.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "export": "node scripts/export-static.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "multer": "^2.4.0"
+  }
+}

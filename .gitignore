@@ -1,0 +1,8 @@
+node_modules/
+data/content.json
+data/backups/
+public/uploads/*
+!public/uploads/.gitkeep
+dist/
+*.tmp
+.DS_Store

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Magus Fashion City · Digital Plan &amp; Social Strategy</title>
+  <meta name="description" content="A 30-day digital media plan and a 10-point social media strategy for Magus Fashion City.">
+  <meta name="theme-color" content="#0b1638">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="vendor/fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="vendor/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading" data-theme="dark">
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <img class="loader-logo" src="assets/logos/magus-fashion-city.png" alt="">
+      <svg class="loader-stitch" viewBox="0 0 300 10" preserveAspectRatio="none"><path d="M0 5 H300"/></svg>
+      <p class="loader-text">The Complete Fashion Ecosystem</p>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Back to start"><img class="brand-logo" src="" alt="Magus Fashion City" hidden></a>
+    <div class="topbar-meta" aria-live="polite">
+      <span class="topbar-count"><span class="topbar-index">01</span><span class="topbar-slash">/</span><span class="topbar-total">00</span></span>
+      <span class="topbar-rule"></span>
+      <span class="topbar-name"></span>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-presenter"></span>
+      <button class="icon-btn" id="indexBtn" type="button" aria-label="Open chapter index (I)" title="Chapters (I)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <button class="icon-btn" id="fsBtn" type="button" aria-label="Toggle fullscreen (F)" title="Fullscreen (F)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="thread" aria-label="Chapters">
+    <div class="thread-line"><span class="thread-fill"></span><span class="thread-needle"></span></div>
+    <div class="thread-dots" id="threadDots"></div>
+  </nav>
+
+  <div class="index-overlay" role="dialog" aria-label="Chapter index">
+    <button class="icon-btn index-close" id="indexClose" type="button" aria-label="Close index">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <p class="eyebrow">Chapters</p>
+    <ol class="index-list" id="indexList"></ol>
+  </div>
+
+  <main id="deck"></main>
+
+  <div class="kbd-hint" aria-hidden="true">
+    <span><kbd>↓</kbd><kbd>↑</kbd> or <kbd>Space</kbd> to move</span>
+    <span><kbd>I</kbd> chapters</span>
+    <span><kbd>F</kbd> fullscreen</span>
+  </div>
+
+  <div class="progress-bar" aria-hidden="true"><span></span></div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

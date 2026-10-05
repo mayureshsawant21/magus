@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · Presentation Studio</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <img src="/assets/logos/magus-fashion-city.png" alt="Magus Fashion City" class="login-logo">
+    <h1>Presentation Studio</h1>
+    <p class="muted">Sign in to edit the Digital Plan &amp; Social Strategy presentation.</p>
+    <p class="login-error" id="err" hidden></p>
+    <form method="post" action="/admin/login">
+      <label class="field">
+        <span class="field-label">Password</span>
+        <input type="password" name="password" autocomplete="current-password" required autofocus>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <a class="login-back" href="/">← Back to the presentation</a>
+  </main>
+  <script>
+    const e = new URLSearchParams(location.search).get('error');
+    if (e) {
+      const el = document.getElementById('err');
+      el.hidden = false;
+      el.textContent = e === 'locked' ? 'Too many attempts. Please wait 15 minutes and try again.' : 'That password is not right. Please try again.';
+    }
+  </script>
+</body>
+</html>
