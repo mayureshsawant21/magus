@@ -527,6 +527,24 @@ body.is-loading { overflow: hidden; }
 .sew-wheel, .sew-spool { transform-box: fill-box; transform-origin: 50% 50%; }
 .sew-wheel { animation: sew-spin 1.8s linear infinite; }
 .sew-spool { animation: sew-roll 0.9s linear infinite; }
+.emb-line { stroke: #ffffff; }
+.emb-soft { stroke: #c4d3f5; }
+.emb-fill { fill: rgba(255, 255, 255, 0.07); }
+.emb-head { fill: #2d4f9c; stroke: #ffffff; }
+.emb-panel { fill: rgba(255, 255, 255, 0.12); stroke: #c4d3f5; }
+.emb-cone { fill: #ffffff; stroke: #ffffff; fill-opacity: 0.85; }
+.emb-cone--alt { fill: #c4d3f5; stroke: #c4d3f5; }
+.emb-thread { stroke: #c4d3f5; stroke-dasharray: 16 4; animation: emb-thread-run 0.9s linear infinite; }
+@keyframes emb-thread-run { to { stroke-dashoffset: -20; } }
+.emb-led { fill: #7fe0a8; animation: emb-led 1.6s ease-in-out infinite; }
+.emb-needles { animation: emb-needle 0.24s ease-in-out infinite alternate; }
+.emb-frame { animation: emb-frame 2.4s ease-in-out infinite alternate; }
+.emb-stitch { stroke: #ffffff; stroke-dasharray: 3 4; animation: emb-thread 0.7s linear infinite; }
+.emb-glow { stroke: rgba(196, 211, 245, 0.5); animation: f-pulse 2.6s ease-in-out infinite; }
+@keyframes emb-thread { to { stroke-dashoffset: -11; } }
+@keyframes emb-led { 50% { opacity: 0.35; } }
+@keyframes emb-needle { from { transform: translateY(-4px); } to { transform: translateY(1px); } }
+@keyframes emb-frame { from { transform: translateX(-7px); } to { transform: translateX(7px); } }
 @keyframes sew-needle { from { transform: translateY(-16px); } to { transform: translateY(4px); } }
 @keyframes sew-spin { to { transform: rotate(360deg); } }
 @keyframes sew-roll { from { transform: translateY(-2px); } 50% { transform: translateY(2px); } to { transform: translateY(-2px); } }

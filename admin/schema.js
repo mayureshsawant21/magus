@@ -56,10 +56,11 @@
         { ...eyebrow, width: 'half' },
         title,
         { key: 'subtitle', label: 'Subtitle', type: 'textarea', rows: 3 },
-        { key: 'machine', label: 'Show the animated sewing machine', type: 'toggle' },
+        { key: 'machine', label: 'Show the animated machine', type: 'toggle' },
+        { key: 'art', label: 'Machine', type: 'select', options: [ { value: 'sewing', label: 'Sewing machine' }, { value: 'embroidery', label: 'Multi-head embroidery machine' } ] },
         { key: 'image', label: 'Background image (faded)', type: 'image' }
       ],
-      defaults: { machine: true, number: '03', eyebrow: 'Part Three', title: 'New *chapter*', subtitle: '', image: '' }
+      defaults: { machine: true, art: 'sewing', number: '03', eyebrow: 'Part Three', title: 'New *chapter*', subtitle: '', image: '' }
     },
     brief: {
       label: 'Brief / spec list',
