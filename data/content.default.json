@@ -326,10 +326,10 @@
       "type": "totals",
       "enabled": true,
       "theme": "light",
-      "navLabel": "Overall Totals",
+      "navLabel": "Plan Overview",
       "eyebrow": "Lead generation + Awareness",
-      "title": "The whole plan, *in five numbers*.",
-      "intro": "Total investment across both objectives, measured against the leads and quality leads it produces.",
+      "title": "The plan *overview*.",
+      "intro": "Total investment across both objectives, measured against the leads, quality leads and site visits it produces.",
       "metrics": [
         {
           "label": "Spends",
@@ -365,6 +365,20 @@
           "prefix": "₹",
           "suffix": "",
           "note": "Total spends ÷ quality leads (lead generation alone: ₹15,598)"
+        },
+        {
+          "label": "Site visits (SV)",
+          "value": "4",
+          "prefix": "",
+          "suffix": "",
+          "note": "26.9% of quality leads book a visit"
+        },
+        {
+          "label": "CPSV",
+          "value": "75000",
+          "prefix": "₹",
+          "suffix": "",
+          "note": "Total spends ÷ site visits"
         }
       ],
       "splitTitle": "Spends by objective",

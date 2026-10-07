@@ -385,7 +385,7 @@
         ${head(s)}
         ${s.intro ? `<p class="body-lg" data-reveal>${rich(s.intro)}</p>` : ''}
       </div>
-      <div class="totals-grid" style="--n:${list(s.metrics).length || 1}">
+      <div class="totals-grid${list(s.metrics).length > 5 ? ' totals-grid--wrap' : ''}" style="--n:${list(s.metrics).length > 5 ? 4 : list(s.metrics).length || 1}">
         ${list(s.metrics)
           .map(
             (m) => `

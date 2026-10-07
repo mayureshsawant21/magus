@@ -106,6 +106,7 @@ a { color: inherit; }
 .slide[data-theme='light'] .insight,
 .slide[data-theme='light'] .tile,
 .slide[data-theme='light'] .kw-list,
+.slide[data-theme='light'] .totals-grid,
 .slide[data-theme='light'] .clip-reveal.tall { background: var(--ivory); }
 
 .slide-inner {
@@ -659,6 +660,9 @@ body.is-loading { overflow: hidden; }
 .total-value { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.04em; color: var(--em); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .total-note { font-size: 13px; line-height: 1.5; color: var(--muted); }
 .totals-split { margin-top: 40px; }
+/* more than five numbers: rows of four, each row starting flush left */
+.totals-grid--wrap .total-tile:nth-child(4n + 1) { border-left: 0; padding-left: 0; }
+.totals-grid--wrap .total-tile:nth-child(n + 5) { border-top: 1px solid var(--line); }
 
 /* split bars (optional, switched on per slide in the admin panel) */
 .split-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px; margin-top: 36px; }
