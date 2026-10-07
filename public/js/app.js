@@ -772,8 +772,8 @@
     if (!tailor.el) return;
     const t1 = Math.min(1, p / 0.75);
     const t2 = Math.max(0, Math.min(1, (p - 0.75) / 0.22));
-    tailor.thread.style.strokeDashoffset = (1 - t1).toFixed(4);
-    tailor.shirt.style.strokeDashoffset = (1 - t2).toFixed(4);
+    tailor.thread.style.strokeDashoffset = (1.05 * (1 - t1)).toFixed(4);
+    tailor.shirt.style.strokeDashoffset = (1.05 * (1 - t2)).toFixed(4);
     tailor.needle.setAttribute('transform', `translate(0 ${(20 + 306 * t1).toFixed(1)})`);
     tailor.el.classList.toggle('is-done', p > 0.985);
   }
