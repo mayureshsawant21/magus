@@ -30,6 +30,7 @@
         { key: 'subtitle', label: 'Subtitle', type: 'textarea', rows: 3 },
         { key: 'preparedBy', label: 'Prepared by line', type: 'text' },
         { key: 'scrollHint', label: 'Scroll hint', type: 'text' },
+        { key: 'factory', label: 'Show the animated garment factory', type: 'toggle' },
         { key: 'image', label: 'Background image', type: 'image' }
       ],
       defaults: { eyebrow: 'Eyebrow', title: 'New *cover*', subtitle: '', preparedBy: '', scrollHint: 'Scroll to begin', image: 'assets/img/hero-city.svg' }

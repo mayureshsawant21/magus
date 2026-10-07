@@ -66,6 +66,7 @@
 
   R.cover = (s, c) => `
     ${s.image ? `<div class="cover-bg"><div class="cover-media">${media(s.image, s.title)}</div></div>` : ''}
+    ${s.factory !== false && window.MFC_FACTORY ? `<div class="cover-art">${window.MFC_FACTORY}</div>` : ''}
     <div class="cover-logos" data-reveal>
       ${c.logos.secondary ? `<img src="${esc(asset(c.logos.secondary))}" alt="Magus" class="logo-invert">` : ''}
       ${c.logos.secondary && c.logos.primary ? '<span class="logo-divider"></span>' : ''}
@@ -554,7 +555,8 @@
     document.getElementById('indexList').innerHTML = navItems
       .map((it) => `<li><a href="#${esc(it.id)}" data-goto="${esc(it.id)}"><small>${pad(it.n)}</small><span>${esc(it.label)}</span></a></li>`)
       .join('');
-    document.getElementById('threadDots').innerHTML = navItems
+    const dots = document.getElementById('threadDots');
+    if (dots) dots.innerHTML = navItems
       .map(
         (it, i) =>
           `<button class="thread-dot" style="--p:${navItems.length > 1 ? (i / (navItems.length - 1)) * 100 : 0}%" data-goto="${esc(
@@ -754,8 +756,26 @@
       end: 'max',
       onUpdate: (self) => {
         document.documentElement.style.setProperty('--progress', self.progress.toFixed(4));
+        updateTailor(self.progress);
       }
     });
+  }
+
+  // the right-hand thread: first 75% of the deck runs the thread down, the rest stitches the shirt
+  const tailor = {
+    el: document.querySelector('.tailor'),
+    thread: document.querySelector('.tailor-thread'),
+    shirt: document.querySelector('.tailor-shirt'),
+    needle: document.querySelector('.tailor-needle')
+  };
+  function updateTailor(p) {
+    if (!tailor.el) return;
+    const t1 = Math.min(1, p / 0.75);
+    const t2 = Math.max(0, Math.min(1, (p - 0.75) / 0.22));
+    tailor.thread.style.strokeDashoffset = (1 - t1).toFixed(4);
+    tailor.shirt.style.strokeDashoffset = (1 - t2).toFixed(4);
+    tailor.needle.setAttribute('transform', `translate(0 ${(20 + 306 * t1).toFixed(1)})`);
+    tailor.el.classList.toggle('is-done', p > 0.985);
   }
 
   function setActive(sl, i) {
@@ -1010,7 +1030,7 @@
       return;
     }
     const showLoader = !IS_PREVIEW && content.settings && content.settings.showIntroLoader !== false && !REDUCED;
-    const minWait = new Promise((r) => setTimeout(r, showLoader ? 1700 : 0));
+    const minWait = new Promise((r) => setTimeout(r, showLoader ? 3300 : 0));
     const hash = decodeURIComponent((location.hash || '').slice(1)) || params.get('section');
     applySettings(content.settings || {});
     render(content);

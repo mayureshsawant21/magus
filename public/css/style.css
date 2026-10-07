@@ -142,7 +142,7 @@ a { color: inherit; }
 .display--xl { font-size: clamp(2.8rem, 6.4vw, 6.6rem); line-height: 1; }
 .display--xxl { font-size: clamp(3.4rem, 10vw, 9.5rem); line-height: 0.98; }
 
-.split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.2em; margin-bottom: -0.2em; }
 .split .wi { display: inline-block; will-change: transform; }
 
 .lede {
@@ -251,63 +251,29 @@ body[data-theme='dark'] .brand-logo { filter: brightness(0) invert(1); }
 .icon-btn:hover { border-color: currentColor; }
 .icon-btn svg { width: 18px; height: 18px; }
 
-/* right-hand progress line with one dot per chapter */
-.thread {
+/* right-hand progress: a thread that runs down the deck and becomes a shirt at the end */
+.tailor {
   position: fixed;
   top: 50%;
-  right: 22px;
+  right: 6px;
   z-index: 40;
-  height: min(60vh, 540px);
-  width: 14px;
-  transform: translateY(-50%);
+  width: 36px;
+  height: min(64vh, 540px);
+  transform: translateY(-46%);
   color: #fff;
+  pointer-events: none;
   transition: color 0.4s;
 }
-body[data-theme='light'] .thread { color: var(--text); }
-.thread-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: color-mix(in srgb, currentColor 20%, transparent); }
-.thread-fill { position: absolute; left: -0.5px; top: 0; width: 2px; height: calc(var(--progress) * 100%); background: currentColor; }
-.thread-dots { position: absolute; inset: 0; }
-.thread-dot {
-  position: absolute;
-  left: 50%;
-  top: var(--p);
-  width: 14px;
-  height: 14px;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-}
-.thread-dot::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.4;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.thread-dot.is-active::before { opacity: 1; transform: scale(1.7); }
-.thread-dot:hover::before { opacity: 1; }
-.thread-dot span {
-  position: absolute;
-  right: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 5px 9px;
-  border-radius: 4px;
-  background: var(--text);
-  color: #fff;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-.thread-dot:hover span { opacity: 1; }
-@media (max-width: 1099px) { .thread { display: none; } }
+body[data-theme='light'] .tailor { color: var(--navy); }
+.tailor svg { width: 100%; height: 100%; overflow: visible; }
+.tailor-track { stroke-opacity: 0.22; }
+.tailor-thread { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tailor-shirt { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tailor-shirt-fill { fill: currentColor; opacity: 0; transition: opacity 0.5s; }
+.tailor.is-done .tailor-shirt-fill { opacity: 0.9; }
+.tailor-needle { transition: opacity 0.3s; }
+.tailor.is-done .tailor-needle { opacity: 0; }
+@media (max-width: 1099px) { .tailor { display: none; } }
 
 .progress-bar { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; z-index: 45; pointer-events: none; }
 .progress-bar span { display: block; height: 100%; background: var(--navy); transform-origin: 0 50%; transform: scaleX(var(--progress)); }
@@ -382,7 +348,7 @@ body.index-open .index-overlay { opacity: 1; visibility: visible; transition: op
 .index-list a:hover { opacity: 0.7; }
 .index-list a.is-active { text-decoration: underline; text-underline-offset: 6px; }
 
-/* loader (off by default; see Global settings) */
+/* loader: a thread leaves the spool and is stitched into a shirt, then the deck opens */
 .loader {
   position: fixed;
   inset: 0;
@@ -390,13 +356,19 @@ body.index-open .index-overlay { opacity: 1; visibility: visible; transition: op
   display: grid;
   place-items: center;
   background: var(--ink);
-  transition: opacity 0.5s, visibility 0s 0.5s;
+  color: #fff;
+  transition: opacity 0.6s, visibility 0s 0.6s;
 }
 body:not(.is-loading) .loader { opacity: 0; visibility: hidden; }
 .loader-inner { display: grid; justify-items: center; gap: 18px; }
-.loader-logo { height: 80px; width: auto; filter: brightness(0) invert(1); }
-.loader-stitch { display: none; }
-.loader-text { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); }
+.loader-art { width: min(220px, 52vw); height: auto; overflow: visible; }
+.loader-spool { stroke: #c4d3f5; }
+.loader-thread { stroke: #fff; stroke-dasharray: 1; stroke-dashoffset: 1; animation: loader-draw 2s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards; }
+.loader-fill { fill: rgba(196, 211, 245, 0.22); opacity: 0; animation: loader-in 0.45s ease 2.1s forwards; }
+.loader-details { stroke: #fff; fill: #fff; opacity: 0; animation: loader-in 0.45s ease 2.2s forwards; }
+.loader-text { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); opacity: 0; animation: loader-in 0.6s ease 0.3s forwards; }
+@keyframes loader-draw { to { stroke-dashoffset: 0; } }
+@keyframes loader-in { to { opacity: 1; } }
 body.is-loading { overflow: hidden; }
 
 /* ------------------------------------------------------------------ cover */
@@ -424,7 +396,59 @@ body.is-loading { overflow: hidden; }
 .logo-invert { filter: brightness(0) invert(1); }
 .logo-divider { width: 1px; height: 38px; background: rgba(255, 255, 255, 0.35); }
 .cover-inner { padding-top: 60px; }
-.cover-inner .display { max-width: 13ch; }
+
+/* animated garment factory on the cover */
+.cover-art {
+  position: absolute;
+  z-index: 1;
+  top: 52%;
+  right: calc(var(--gutter) + var(--rail));
+  width: min(44vw, 680px);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.factory { display: block; width: 100%; height: auto; overflow: visible; }
+.f-line { stroke: #fff; }
+.f-soft { stroke: #c4d3f5; }
+.f-fill { fill: rgba(255, 255, 255, 0.07); }
+.f-cloth { fill: rgba(196, 211, 245, 0.3); }
+.f-shirt { fill: #c4d3f5; stroke: #fff; }
+.f-glow { fill: rgba(196, 211, 245, 0.07); animation: f-pulse 3.2s ease-in-out infinite; }
+.f-glow--late { animation-delay: -1.6s; }
+.f-weave { stroke: rgba(255, 255, 255, 0.25); stroke-dasharray: 1.5 8; animation: f-feed 0.8s linear infinite; }
+.f-belt { stroke: #c4d3f5; stroke-dasharray: 10 8; animation: f-belt 0.8s linear infinite; }
+.f-needle { animation: f-needle 0.32s ease-in-out infinite alternate; }
+.f-arm { transform-box: fill-box; animation: f-arm 0.64s ease-in-out infinite alternate; }
+.f-arm--late { animation-delay: -0.32s; }
+.f-roll, .f-roller { transform-box: fill-box; transform-origin: 50% 50%; animation: f-spin 2.4s linear infinite; }
+.f-roller { animation-duration: 0.9s; }
+.f-ride { animation: f-ride 7.5s linear infinite; }
+.f-flap { transform-box: fill-box; animation: f-flap 1.2s ease-in-out infinite alternate; }
+.f-flap { transform-origin: 100% 100%; }
+.f-flap--late { transform-origin: 0% 100%; animation-name: f-flap-r; }
+.f-drop { animation: f-drop 2.5s ease-in infinite; }
+@keyframes f-pulse { 50% { opacity: 0.35; } }
+@keyframes f-feed { to { stroke-dashoffset: -9.5; } }
+@keyframes f-belt { to { stroke-dashoffset: -18; } }
+@keyframes f-needle { from { transform: translateY(-6px); } to { transform: translateY(1px); } }
+@keyframes f-arm { from { transform: rotate(-7deg); } to { transform: rotate(6deg); } }
+@keyframes f-spin { to { transform: rotate(360deg); } }
+@keyframes f-ride {
+  0% { transform: translateX(118px); opacity: 0; }
+  6% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateX(566px); opacity: 0; }
+}
+@keyframes f-flap { from { transform: rotate(0deg); } to { transform: rotate(18deg); } }
+@keyframes f-flap-r { from { transform: rotate(0deg); } to { transform: rotate(-18deg); } }
+@keyframes f-drop {
+  0%, 30% { transform: translateY(-26px); opacity: 0; }
+  45% { opacity: 1; }
+  75% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+.cover-inner .display { max-width: 13ch; font-size: clamp(2.6rem, 4.9vw, 5.6rem); }
+@media (min-width: 901px) { .cover-inner .lede { max-width: 38ch; } }
 .cover-foot {
   position: absolute;
   z-index: 3;
@@ -881,6 +905,7 @@ body.is-loading { overflow: hidden; }
   .brand { height: 32px; }
   .cover-logos { top: 76px; }
   .cover-logos img { height: 38px; }
+  .cover-art { position: relative; top: auto; right: auto; width: 100%; margin: 28px auto 0; transform: none; padding: 0 var(--gutter); z-index: 2; }
   .intro-grid, .brief-grid, .channel-top, .results-grid, .table-head, .kw-head, .channel-body:has(.serp) { grid-template-columns: 1fr; }
   .brief-side { position: static; }
   .spec { grid-template-columns: 44px 1fr; }

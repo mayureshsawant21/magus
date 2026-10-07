@@ -20,7 +20,7 @@
     },
     "currencySymbol": "₹",
     "showKeyboardHint": false,
-    "showIntroLoader": false
+    "showIntroLoader": true
   },
   "sections": [
     {
