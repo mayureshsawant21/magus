@@ -3,11 +3,11 @@
     "siteTitle": "Magus Fashion City · Digital Plan & Social Strategy",
     "metaDescription": "A 30-day digital media plan and a 10-point social media strategy for Magus Fashion City's manufacturing units.",
     "theme": {
-      "ink": "#0b1638",
+      "ink": "#22428c",
       "navy": "#22428c",
-      "sky": "#0b8bcb",
-      "ivory": "#f4efe6",
-      "accent": "#c99a4f"
+      "sky": "#5b7bcb",
+      "ivory": "#ffffff",
+      "accent": "#22428c"
     },
     "logos": {
       "primary": "assets/logos/magus-fashion-city.png",
@@ -19,8 +19,8 @@
       "role": "Digital & Marketing"
     },
     "currencySymbol": "₹",
-    "showKeyboardHint": true,
-    "showIntroLoader": true
+    "showKeyboardHint": false,
+    "showIntroLoader": false
   },
   "sections": [
     {
@@ -33,7 +33,7 @@
       "title": "Digital *Media Plan* & Social Media *Strategy*",
       "subtitle": "A 30-day performance campaign and a 10-point social playbook to bring garment manufacturers home to Magus Fashion City.",
       "preparedBy": "Prepared by Mayuresh Sawant",
-      "image": "assets/img/hero-city.svg",
+      "image": "",
       "scrollHint": "Scroll to begin"
     },
     {
@@ -84,7 +84,7 @@
       "eyebrow": "Part One",
       "title": "Digital *Media Plan*",
       "subtitle": "Thirty days of paid media across Meta, Google Search, Demand Gen, YouTube and DV360, split between lead generation and awareness.",
-      "image": "assets/img/elevation.svg"
+      "image": ""
     },
     {
       "id": "brief",
@@ -121,20 +121,14 @@
           "value": "Meta, Google Search, Demand Gen, YT, DV360"
         }
       ],
-      "channels": [
-        "Meta",
-        "Google Search",
-        "Demand Gen",
-        "YouTube",
-        "DV360"
-      ],
-      "image": "assets/img/gala-interior.svg"
+      "channels": [],
+      "image": ""
     },
     {
       "id": "lead-generation",
       "type": "table",
       "enabled": true,
-      "theme": "dark",
+      "theme": "light",
       "navLabel": "Lead Generation Plan",
       "eyebrow": "Media Plan · Lead Generation",
       "title": "Turning spend into *qualified leads*.",
@@ -238,10 +232,7 @@
       ],
       "highlightLastRow": true,
       "dense": true,
-      "chartColumns": [
-        2,
-        10
-      ],
+      "chartColumns": [],
       "chartTitle": "Share",
       "image": "",
       "imageCaption": ""
@@ -324,10 +315,7 @@
       ],
       "highlightLastRow": true,
       "dense": true,
-      "chartColumns": [
-        2,
-        5
-      ],
+      "chartColumns": [],
       "chartTitle": "Share",
       "image": "",
       "imageCaption": ""
@@ -336,7 +324,7 @@
       "id": "overall",
       "type": "totals",
       "enabled": true,
-      "theme": "dark",
+      "theme": "light",
       "navLabel": "Overall Totals",
       "eyebrow": "Lead generation + Awareness",
       "title": "The whole plan, *in five numbers*.",
@@ -379,16 +367,7 @@
         }
       ],
       "splitTitle": "Spends by objective",
-      "split": [
-        {
-          "label": "Lead generation",
-          "value": "230000"
-        },
-        {
-          "label": "Awareness",
-          "value": "70000"
-        }
-      ]
+      "split": []
     },
     {
       "id": "meta",
@@ -482,7 +461,7 @@
       "id": "google",
       "type": "channel",
       "enabled": true,
-      "theme": "dark",
+      "theme": "light",
       "navLabel": "Google Search",
       "eyebrow": "Channel 02",
       "title": "Google Search *Targeting*",
@@ -574,7 +553,7 @@
       "id": "youtube",
       "type": "channel",
       "enabled": true,
-      "theme": "dark",
+      "theme": "light",
       "navLabel": "YouTube Targeting",
       "eyebrow": "Channel 03",
       "title": "YouTube *Targeting*",
@@ -613,28 +592,7 @@
       ],
       "textAds": [],
       "creativesTitle": "Video creatives",
-      "creatives": [
-        {
-          "title": "Manufacturing garments inside the gala",
-          "format": "Video",
-          "image": "assets/img/gala-interior.svg"
-        },
-        {
-          "title": "How to start a business, for new investors",
-          "format": "Video",
-          "image": "assets/img/investor-talk.svg"
-        },
-        {
-          "title": "Higher rental yield for investors",
-          "format": "Video",
-          "image": "assets/img/rental-yield.svg"
-        },
-        {
-          "title": "Owner story: 940+ units operating",
-          "format": "Video",
-          "image": "assets/img/testimonial-reel.svg"
-        }
-      ],
+      "creatives": [],
       "adPreview": {
         "enabled": false,
         "headline": "",
@@ -706,23 +664,7 @@
       ],
       "textAds": [],
       "creativesTitle": "Display creatives",
-      "creatives": [
-        {
-          "title": "Elevation display banner",
-          "format": "Display",
-          "image": "assets/img/elevation.svg"
-        },
-        {
-          "title": "Manufacturing setup with property details",
-          "format": "Display",
-          "image": "assets/img/floor-plan.svg"
-        },
-        {
-          "title": "Higher rental yield for investors",
-          "format": "Native",
-          "image": "assets/img/rental-yield.svg"
-        }
-      ],
+      "creatives": [],
       "adPreview": {
         "enabled": false,
         "headline": "",
@@ -761,7 +703,7 @@
       "eyebrow": "Part Two",
       "title": "Social Media *Strategy*",
       "subtitle": "10 ways to improve and grow Magus Fashion City's social media presence among garment manufacturers.",
-      "image": "assets/img/testimonial-reel.svg"
+      "image": ""
     },
     {
       "id": "strategy",
@@ -897,7 +839,7 @@
       "id": "kpis",
       "type": "kpis",
       "enabled": true,
-      "theme": "dark",
+      "theme": "light",
       "navLabel": "What We Track",
       "eyebrow": "How we will know it is working",
       "title": "Four numbers to track *every month*.",
@@ -970,64 +912,64 @@
           "icon": "bus",
           "title": "Weekend site-visit shuttles",
           "text": "Free Saturday pickup from Mumbai's garment clusters to Bhiwandi, with a guided walkthrough and lunch. It removes the biggest barrier to a visit: the trip itself.",
-          "chips": "Dharavi, Kalbadevi, Andheri, Ulhasnagar",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "gift",
           "title": "Refer-a-manufacturer rewards",
           "text": "940+ operating units know other manufacturers. Reward owners and brokers for every referral that books a unit.",
-          "chips": "Unit owners, Channel partners & brokers, Trade suppliers",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "chat",
           "title": "WhatsApp automation",
           "text": "Every lead from ads, the website or a QR scan lands in an automated WhatsApp flow: an instant brochure and walkthrough video, three qualifying questions, a site-visit slot picker and reminders. Hot leads go straight to sales, the rest get a weekly nurture message.",
-          "chips": "Instant brochure & video, Lead qualification, Visit booking & reminders, Nurture broadcasts",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "users",
           "title": "Webinars on investing & setting up a garment unit",
           "text": "Monthly online sessions: how to invest in industrial property and how to set up a garment business, with experts on finance, subsidies and operations. Each session ends with a Magus Fashion City walkthrough and an attendee-only offer, so every registration becomes a lead.",
-          "chips": "Registrations as leads, Expert panel, Live unit walkthrough, Attendee-only offer",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "calculator",
           "title": "EMI vs rent calculator",
           "text": "An online calculator that compares the monthly EMI with current rent, then sends the full breakdown on WhatsApp. A lead magnet that also qualifies buyers.",
-          "chips": "Website, WhatsApp, QR on brochures",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "megaphone",
           "title": "SMS, RCS & email marketing",
           "text": "Low-cost reach to owners who are not on social media. SMS for short offers and site-visit invites, RCS for rich branded messages with images and a Book visit button, and email for brochures, floor plans and webinar invites.",
-          "chips": "SMS offers & invites, RCS rich cards with buttons, Email brochures & newsletters",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "layers",
           "title": "Data buying for pre-sales & campaigns",
           "text": "Buy verified databases of garment manufacturers, traders, MSME owners and investors in Mumbai, Thane and Bhiwandi. The pre-sales team calls the best matches, and the same lists feed the SMS, RCS and email campaigns. Source only consented, DND-scrubbed data.",
-          "chips": "Garment manufacturers & traders, MSME owners, Investors, Pre-sales calling, SMS/RCS/Email lists",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         },
         {
           "icon": "play",
           "title": "Hindi business creators",
           "text": "Sponsored walkthroughs with Hindi business and startup YouTubers who explain how to set up a garment unit.",
-          "chips": "YouTube, Instagram Reels",
-          "tag": "New idea",
+          "chips": "",
+          "tag": "",
           "wide": false
         }
       ]
@@ -1042,7 +984,7 @@
       "title": "Thank *you*.",
       "subtitle": "Let's build the city that dresses India, one enquiry and one site visit at a time.",
       "contactLines": [],
-      "image": "assets/img/hero-city.svg"
+      "image": ""
     }
   ]
 }

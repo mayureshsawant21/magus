@@ -247,7 +247,7 @@
 
   const COMMON_FIELDS = [
     { key: 'navLabel', label: 'Name in navigation', type: 'text', width: 'half' },
-    { key: 'theme', label: 'Background', type: 'select', width: 'half', options: [ { value: 'light', label: 'Ivory (light)' }, { value: 'dark', label: 'Ink (dark)' } ] },
+    { key: 'theme', label: 'Background', type: 'select', width: 'half', options: [ { value: 'light', label: 'White (light)' }, { value: 'dark', label: 'Blue (dark)' } ] },
     { key: 'id', label: 'Link id', type: 'slug', help: 'Used in links like /#media-plan. Lowercase letters, numbers and dashes.' }
   ];
 
@@ -264,11 +264,11 @@
       { key: 'presenter', label: 'Presenter logo', type: 'image' }
     ] },
     { key: 'theme', label: 'Colours', type: 'object', fields: [
-      { key: 'ink', label: 'Ink (dark background)', type: 'color', width: 'half' },
-      { key: 'ivory', label: 'Ivory (light background)', type: 'color', width: 'half' },
-      { key: 'navy', label: 'Royal blue', type: 'color', width: 'half' },
-      { key: 'sky', label: 'Sky blue', type: 'color', width: 'half' },
-      { key: 'accent', label: 'Gold accent', type: 'color', width: 'half' }
+      { key: 'ink', label: 'Dark slide colour', type: 'color', width: 'half' },
+      { key: 'ivory', label: 'Light slide colour', type: 'color', width: 'half' },
+      { key: 'navy', label: 'Accent blue', type: 'color', width: 'half' },
+      { key: 'sky', label: 'Secondary blue (charts)', type: 'color', width: 'half' },
+      { key: 'accent', label: 'Highlight colour', type: 'color', width: 'half' }
     ] },
     { key: 'currencySymbol', label: 'Currency symbol', type: 'text', width: 'half' },
     { key: 'showIntroLoader', label: 'Show the logo intro when the page opens', type: 'toggle' },

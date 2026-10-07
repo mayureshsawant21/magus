@@ -59,13 +59,13 @@
 
   /* ---------------------------------------------------------------- renderers */
 
+  const SPLIT_COLORS = ['var(--navy)', 'var(--sky)', '#b7c6ea', '#dfe6f6'];
+  const SPLIT_TEXT = ['#fff', '#fff', '#111', '#111'];
+
   const R = {};
 
   R.cover = (s, c) => `
-    <div class="cover-bg">
-      <div class="cover-media" data-parallax="0.25">${media(s.image, s.title)}</div>
-      <div class="cover-shade"></div>
-    </div>
+    ${s.image ? `<div class="cover-bg"><div class="cover-media">${media(s.image, s.title)}</div></div>` : ''}
     <div class="cover-logos" data-reveal>
       ${c.logos.secondary ? `<img src="${esc(asset(c.logos.secondary))}" alt="Magus" class="logo-invert">` : ''}
       ${c.logos.secondary && c.logos.primary ? '<span class="logo-divider"></span>' : ''}
@@ -106,9 +106,8 @@
 
   R.chapter = (s) => `
     <div class="chapter-bg" data-parallax="0.3">${s.image ? media(s.image, s.title) : ''}</div>
-    <div class="chapter-number" aria-hidden="true"><span>${esc(s.number)}</span></div>
     <div class="slide-inner chapter-inner">
-      ${s.eyebrow ? `<p class="eyebrow" data-reveal>${esc(s.eyebrow)}</p>` : ''}
+      ${s.eyebrow || s.number ? `<p class="eyebrow" data-reveal>${esc([s.number, s.eyebrow].filter(Boolean).join(' · '))}</p>` : ''}
       <h2 class="display display--xl split">${rich(s.title)}</h2>
       ${s.subtitle ? `<p class="lede" data-reveal>${rich(s.subtitle)}</p>` : ''}
     </div>`;
@@ -143,7 +142,7 @@
     const rows = list(s.rows);
     const chartCols = list(s.chartColumns).map(Number).filter((n) => n >= 0 && n < cols.length);
     const dataRows = s.highlightLastRow ? rows.slice(0, -1) : rows;
-    const palette = ['var(--sky)', 'var(--accent)', '#8fb7d9', '#e0bd85', '#b9c7e6', '#d9c3a0'];
+    const palette = SPLIT_COLORS;
     const charts = chartCols
       .map((ci) => {
         const total = dataRows.reduce((a, r) => a + num(r[ci]), 0) || 1;
@@ -154,7 +153,7 @@
             ${dataRows
               .map((r, i) => {
                 const pct = (num(r[ci]) / total) * 100;
-                return `<span class="split-seg${pct < 22 ? ' is-narrow' : ''}" title="${esc(r[0])}: ${esc(r[ci])}" style="--w:${pct.toFixed(2)}%;--c:${palette[i % palette.length]}"><b>${esc(r[0])}</b><i>${Math.round(pct)}%</i></span>`;
+                return `<span class="split-seg${pct < 22 ? ' is-narrow' : ''}" title="${esc(r[0])}: ${esc(r[ci])}" style="--w:${pct.toFixed(2)}%;--c:${palette[i % palette.length]};--t:${SPLIT_TEXT[i % palette.length]}"><b>${esc(r[0])}</b><i>${Math.round(pct)}%</i></span>`;
               })
               .join('')}
           </div>
@@ -294,33 +293,12 @@
 
   R.keywords = (s) => {
     const kws = list(s.keywords);
-    const half = Math.ceil(kws.length / 2);
-    const rows = [kws.slice(0, half), kws.slice(half)].filter((r) => r.length);
     return `
     <div class="slide-inner">
       <div class="kw-head">
         ${head(s)}
         ${s.intro ? `<p class="body-lg" data-reveal>${rich(s.intro)}</p>` : ''}
       </div>
-      <div class="search-box" data-reveal>
-        ${icon('search')}
-        <span class="search-typed" data-words='${esc(JSON.stringify(kws))}'></span><span class="search-caret"></span>
-        <span class="search-btn">${esc(s.searchPlaceholder || 'Search')}</span>
-      </div>
-    </div>
-    <div class="marquees">
-      ${rows
-        .map(
-          (r, i) => `
-        <div class="marquee" data-dir="${i % 2 ? 1 : -1}">
-          <div class="marquee-track">${[...r, ...r, ...r, ...r]
-            .map((k) => `<span class="marquee-item">${esc(k)}<i>${icon('sparkle')}</i></span>`)
-            .join('')}</div>
-        </div>`
-        )
-        .join('')}
-    </div>
-    <div class="slide-inner">
       <ol class="kw-list" data-stagger>
         ${kws.map((k, i) => `<li><small>${pad(i + 1)}</small><span>${esc(k)}</span></li>`).join('')}
       </ol>
@@ -424,7 +402,7 @@
           <div class="split-bar">${split
             .map((x, i) => {
               const pct = (x.value / total) * 100;
-              return `<span class="split-seg" style="--w:${pct.toFixed(2)}%;--c:${['var(--sky)', 'var(--accent)', '#8fb7d9', '#e0bd85'][i % 4]}"><b>${esc(
+              return `<span class="split-seg" style="--w:${pct.toFixed(2)}%;--c:${SPLIT_COLORS[i % 4]};--t:${SPLIT_TEXT[i % 4]}"><b>${esc(
                 x.label
               )} · ${esc(c.currency)}${fmt(x.value)}</b><i>${Math.round(pct)}%</i></span>`;
             })
@@ -441,9 +419,6 @@
     return `
     <div class="slide-inner strategy-intro">
       ${head(s)}
-      <div class="strategy-index" data-stagger>
-        ${pts.map((p, i) => `<button class="strategy-index-item" data-point="${i}"><small>${pad(i + 1)}</small><span>${esc(p.title)}</span></button>`).join('')}
-      </div>
     </div>
     <div class="hz-pin">
       <div class="hz-progress"><span class="hz-progress-count"><b>01</b> / ${pad(pts.length)}</span><span class="hz-progress-bar"><i></i></span></div>
@@ -454,7 +429,6 @@
           <article class="point" data-index="${i}">
             <div class="point-media">
               <div class="point-media-inner">${media(p.image, p.title)}</div>
-              <span class="point-num" aria-hidden="true">${pad(i + 1)}</span>
             </div>
             <div class="point-copy">
               <p class="eyebrow">Point ${pad(i + 1)} of ${pad(pts.length)}</p>
@@ -505,24 +479,9 @@
   R.kpis = (s) => {
     const items = list(s.items);
     const n = items.length || 1;
-    const segs = items
-      .map((it, i) => {
-        const x0 = (i / n) * 1000;
-        const x1 = ((i + 1) / n) * 1000;
-        const h0 = 150 - (i / n) * 100;
-        const h1 = 150 - ((i + 1) / n) * 100;
-        return `<path class="funnel-seg" style="--i:${i}" d="M${x0 + 3} ${160 - h0} L${x1 - 3} ${160 - h1} L${x1 - 3} ${160 + h1} L${x0 + 3} ${160 + h0} Z"/>`;
-      })
-      .join('');
     return `
     <div class="slide-inner">
       ${head(s)}
-      <div class="funnel" data-reveal>
-        <svg viewBox="0 0 1000 320" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="fg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0" style="stop-color:var(--sky)"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient></defs>
-          ${segs}
-        </svg>
-      </div>
       <div class="kpi-grid" style="--n:${n}">
         ${items
           .map(
@@ -731,7 +690,6 @@
       // cover: the skyline settles while the title lifts away
       const cover = deck.querySelector('.slide--cover');
       if (cover) {
-        gsap.from(cover.querySelector('.cover-media .media'), { scale: 1.18, duration: 2.6, ease: 'expo.out' });
         gsap.to(cover.querySelector('.cover-inner'), {
           yPercent: -18,
           autoAlpha: 0.15,
@@ -740,20 +698,10 @@
         });
       }
 
-      // chapter numerals drift and scale as you pass
-      deck.querySelectorAll('.slide--chapter').forEach((ch) => {
-        gsap.fromTo(
-          ch.querySelector('.chapter-number span'),
-          { xPercent: -8, scale: 0.86 },
-          { xPercent: 8, scale: 1.08, ease: 'none', scrollTrigger: { trigger: ch, start: 'top bottom', end: 'bottom top', scrub: true } }
-        );
-      });
-
       // creatives cascade in with a slight lift and tilt
       deck.querySelectorAll('.creative-row').forEach((row) => {
         gsap.from(row.querySelectorAll('[data-creative]'), {
           y: 80,
-          rotate: (i) => (i % 2 ? 2 : -2),
           autoAlpha: 0,
           duration: 1.2,
           ease: 'expo.out',
@@ -780,16 +728,14 @@
       });
     }
 
-    // bars, split charts, rings and funnel animate via a class toggle
-    deck.querySelectorAll('.split-bar, .compare-group, .ring, .funnel').forEach((el) => {
+    // bars, split charts and rings animate via a class toggle
+    deck.querySelectorAll('.split-bar, .compare-group, .ring').forEach((el) => {
       ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('is-in') });
     });
 
     deck.querySelectorAll('.count').forEach((el) => (REDUCED ? null : animateCount(el)));
 
     setupStrategy();
-    setupMarquees();
-    setupTyping();
 
     // header + thread react to the slide in view
     slides.forEach((sl, i) => {
@@ -871,7 +817,6 @@
         points.forEach((p) => {
           const st = { trigger: p, containerAnimation: tween, start: 'left 85%', end: 'left 25%', scrub: true };
           gsap.fromTo(p.querySelector('.point-media-inner .media'), { scale: 1.25, xPercent: -6 }, { scale: 1, xPercent: 0, ease: 'none', scrollTrigger: st });
-          gsap.from(p.querySelector('.point-num'), { xPercent: 40, ease: 'none', scrollTrigger: st });
           gsap.from(p.querySelectorAll('.point-copy > *, .point-block'), {
             y: 30,
             autoAlpha: 0,
@@ -912,59 +857,6 @@
   function goToPoint(i) {
     const y = pointPosition(i);
     if (y != null) scrollToY(y);
-  }
-
-  function setupMarquees() {
-    const rows = [...deck.querySelectorAll('.marquee')];
-    if (!rows.length) return;
-    const data = rows.map((r) => ({ track: r.querySelector('.marquee-track'), dir: Number(r.dataset.dir) || -1, x: 0 }));
-    const tick = () => {
-      const v = state.lenis ? Math.min(Math.abs(state.lenis.velocity), 60) : 0;
-      data.forEach((d) => {
-        const w = d.track.scrollWidth / 2;
-        if (!w) return;
-        d.x += d.dir * (REDUCED ? 0 : 0.6 + v * 0.25);
-        if (d.x <= -w) d.x += w;
-        if (d.x > 0) d.x -= w;
-        d.track.style.transform = `translate3d(${d.x}px,0,0)`;
-      });
-    };
-    gsap.ticker.add(tick);
-    state.cleanups.push(() => gsap.ticker.remove(tick));
-  }
-
-  function setupTyping() {
-    const el = deck.querySelector('.search-typed');
-    if (!el) return;
-    let words = [];
-    try {
-      words = JSON.parse(el.dataset.words || '[]');
-    } catch (e) {
-      words = [];
-    }
-    if (!words.length) return;
-    let w = 0;
-    let ch = 0;
-    let deleting = false;
-    let timer = null;
-    const step = () => {
-      const word = words[w % words.length];
-      ch += deleting ? -1 : 1;
-      el.textContent = word.slice(0, ch);
-      let delay = deleting ? 28 : 65;
-      if (!deleting && ch >= word.length) {
-        deleting = true;
-        delay = 1500;
-      } else if (deleting && ch <= 0) {
-        deleting = false;
-        w += 1;
-        delay = 350;
-      }
-      timer = setTimeout(step, delay);
-    };
-    if (REDUCED) el.textContent = words[0];
-    else step();
-    state.cleanups.push(() => clearTimeout(timer));
   }
 
   /* --------------------------------------------------------------- navigation */
