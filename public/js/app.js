@@ -105,6 +105,7 @@
     </div>`;
 
   R.chapter = (s) => `
+    ${s.machine !== false && window.MFC_SEWING_MACHINE ? `<div class="chapter-art">${window.MFC_SEWING_MACHINE}</div>` : ''}
     <div class="chapter-bg" data-parallax="0.3">${s.image ? media(s.image, s.title) : ''}</div>
     <div class="slide-inner chapter-inner">
       ${s.eyebrow || s.number ? `<p class="eyebrow" data-reveal>${esc([s.number, s.eyebrow].filter(Boolean).join(' · '))}</p>` : ''}

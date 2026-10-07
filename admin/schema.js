@@ -55,9 +55,10 @@
         { ...eyebrow, width: 'half' },
         title,
         { key: 'subtitle', label: 'Subtitle', type: 'textarea', rows: 3 },
+        { key: 'machine', label: 'Show the animated sewing machine', type: 'toggle' },
         { key: 'image', label: 'Background image (faded)', type: 'image' }
       ],
-      defaults: { number: '03', eyebrow: 'Part Three', title: 'New *chapter*', subtitle: '', image: '' }
+      defaults: { machine: true, number: '03', eyebrow: 'Part Three', title: 'New *chapter*', subtitle: '', image: '' }
     },
     brief: {
       label: 'Brief / spec list',

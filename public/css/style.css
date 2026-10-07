@@ -93,6 +93,21 @@ a { color: inherit; }
 
 .slide[data-theme='light'] + .slide[data-theme='light'] { border-top: 1px solid #e3e5ea; }
 
+/* a faint garment pattern behind white slides; kept very light so text stays crisp */
+.slide[data-theme='light']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('../assets/pattern-garments.svg') 0 0 / 280px 280px repeat;
+}
+.slide[data-theme='light'] .plan-table-wrap,
+.slide[data-theme='light'] .insight,
+.slide[data-theme='light'] .tile,
+.slide[data-theme='light'] .kw-list,
+.slide[data-theme='light'] .clip-reveal.tall { background: var(--ivory); }
+
 .slide-inner {
   position: relative;
   z-index: 2;
@@ -462,6 +477,38 @@ body.is-loading { overflow: hidden; }
 .slide--chapter { display: flex; align-items: center; }
 .chapter-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.15; }
 .chapter-inner .display { max-width: 10ch; }
+
+/* animated sewing machine on the divider slides */
+.chapter-art {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: calc(var(--gutter) + var(--rail));
+  width: min(46vw, 640px);
+  transform: translateY(-46%);
+  pointer-events: none;
+}
+.sew { display: block; width: 100%; height: auto; overflow: visible; }
+.sew-line { stroke: #ffffff; }
+.sew-soft { stroke: #c4d3f5; }
+.sew-fill { fill: rgba(255, 255, 255, 0.07); }
+.sew-cloth { fill: rgba(196, 211, 245, 0.28); }
+.sew-weave { stroke: rgba(255, 255, 255, 0.16); stroke-dasharray: 1.5 9; animation: sew-feed 0.9s linear infinite; }
+.sew-stitch { stroke: #ffffff; stroke-dasharray: 8 6; animation: sew-feed 0.9s linear infinite; }
+.sew-thread { stroke: #c4d3f5; stroke-dasharray: 10 7; animation: sew-thread 1.1s linear infinite; }
+.sew-needle { animation: sew-needle 0.45s ease-in-out infinite alternate; }
+.sew-wheel, .sew-spool { transform-box: fill-box; transform-origin: 50% 50%; }
+.sew-wheel { animation: sew-spin 1.8s linear infinite; }
+.sew-spool { animation: sew-roll 0.9s linear infinite; }
+@keyframes sew-needle { from { transform: translateY(-16px); } to { transform: translateY(4px); } }
+@keyframes sew-spin { to { transform: rotate(360deg); } }
+@keyframes sew-roll { from { transform: translateY(-2px); } 50% { transform: translateY(2px); } to { transform: translateY(-2px); } }
+@keyframes sew-feed { to { stroke-dashoffset: 14; } }
+@keyframes sew-thread { to { stroke-dashoffset: -17; } }
+@media (max-width: 900px) {
+  .chapter-art { position: relative; top: auto; right: auto; width: min(100%, 460px); margin: 40px auto 0; transform: none; padding: 0 var(--gutter); }
+  .slide--chapter { flex-direction: column; justify-content: center; }
+}
 .chapter-inner .lede { max-width: 44ch; }
 
 /* ------------------------------------------------------------------ brief */
