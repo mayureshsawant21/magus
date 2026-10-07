@@ -274,7 +274,7 @@
       { key: 'accent', label: 'Highlight colour', type: 'color', width: 'half' }
     ] },
     { key: 'currencySymbol', label: 'Currency symbol', type: 'text', width: 'half' },
-    { key: 'showIntroLoader', label: 'Show the logo intro when the page opens', type: 'toggle' },
+    { key: 'showIntroLoader', label: 'Show the Start Stitching intro when the page opens', type: 'toggle' },
     { key: 'showKeyboardHint', label: 'Show the keyboard hint at the bottom', type: 'toggle' }
   ];
 

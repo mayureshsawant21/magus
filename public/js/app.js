@@ -1029,12 +1029,22 @@
       document.body.classList.remove('is-loading');
       return;
     }
-    const showLoader = !IS_PREVIEW && content.settings && content.settings.showIntroLoader !== false && !REDUCED;
-    const minWait = new Promise((r) => setTimeout(r, showLoader ? 3300 : 0));
+    const showLoader = !IS_PREVIEW && content.settings && content.settings.showIntroLoader !== false;
     const hash = decodeURIComponent((location.hash || '').slice(1)) || params.get('section');
     applySettings(content.settings || {});
     render(content);
-    await Promise.all([waitForImages(), minWait]);
+    if (showLoader) {
+      // wait for "Start Stitching", then let the shirt and trousers finish (about 3.2 s) and hold 1.5 s
+      const btn = document.getElementById('startBtn');
+      document.body.classList.add('is-waiting');
+      btn.focus();
+      await new Promise((resolve) => btn.addEventListener('click', resolve, { once: true }));
+      document.body.classList.remove('is-waiting');
+      document.body.classList.add('is-stitching');
+      await Promise.all([waitForImages(), new Promise((r) => setTimeout(r, REDUCED ? 0 : 4700))]);
+    } else {
+      await waitForImages();
+    }
     document.body.classList.remove('is-loading');
     document.body.classList.add('is-ready');
     deck.innerHTML = '';

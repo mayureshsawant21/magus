@@ -12,27 +12,39 @@
 </head>
 <body class="is-loading" data-theme="dark">
 
-  <div class="loader" aria-hidden="true">
+  <div class="loader">
     <div class="loader-inner">
-      <!-- a thread runs from a spool lying on its side, stitches a shirt, then carries on into trousers -->
-      <svg class="loader-art" viewBox="0 0 360 220" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path class="loader-spool" d="M10 166 V204 M46 166 V204 M14 174 H42 M14 196 H42 M20 176 V194 M26 176 V194 M32 176 V194 M38 176 V194" stroke-width="2.4"/>
-        <path class="loader-fill" d="M98 58 L116 50 Q130 66 144 50 L162 58 L192 82 L180 104 L166 96 L166 178 L94 178 L94 96 L80 104 L68 82 Z"/>
-        <path class="loader-fill loader-fill--late" d="M238 52 H322 L332 190 H298 L280 98 L262 190 H228 Z"/>
-        <path class="loader-thread" pathLength="1" d="M28 174 C 30 122, 72 84, 98 58 L116 50 Q130 66 144 50 L162 58 L192 82 L180 104 L166 96 L166 178 L94 178 L94 96 L80 104 L68 82 L98 58" stroke-width="2.6"/>
-        <path class="loader-thread loader-thread--late" pathLength="1" d="M166 178 C 204 204, 214 74, 238 52 L322 52 L332 190 L298 190 L280 98 L262 190 L228 190 L238 52" stroke-width="2.6"/>
+      <!-- press Start: the thread runs from the spool through an automatic sewing machine
+           and comes out stitching a shirt, then a pair of trousers -->
+      <svg class="loader-art" viewBox="0 0 540 250" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="loader-spool" d="M10 196 V234 M46 196 V234 M14 204 H42 M14 226 H42 M20 206 V224 M26 206 V224 M32 206 V224 M38 206 V224" stroke-width="2.4"/>
+        <!-- the machine -->
+        <g class="loader-machine">
+          <path d="M84 170 V104 Q84 92 96 92 H196 Q208 92 208 104 V214 H182 V124 Q182 118 176 118 H114 Q108 118 108 124 V170 Z" stroke-width="2.4"/>
+          <rect x="58" y="214" width="166" height="14" rx="4" stroke-width="2.4"/>
+          <circle cx="96" cy="104" r="5" stroke-width="2"/>
+          <path d="M168 92 V80 M160 80 H176" stroke-width="2.2"/>
+          <g class="loader-wheel"><circle cx="220" cy="118" r="15" stroke-width="2.2"/><path d="M220 106 V130 M208 118 H232" stroke-width="1.8"/></g>
+          <path d="M84 196 H124" stroke-width="2.4"/>
+          <g class="loader-needle"><rect x="90" y="170" width="12" height="12" rx="2" stroke-width="2"/><path d="M96 182 V200" stroke-width="2"/></g>
+        </g>
+        <path class="loader-fill" d="M288 88 L306 80 Q320 96 334 80 L352 88 L382 112 L370 134 L356 126 L356 208 L284 208 L284 126 L270 134 L258 112 Z"/>
+        <path class="loader-fill loader-fill--late" d="M428 82 H512 L522 220 H488 L470 128 L452 220 H418 Z"/>
+        <path class="loader-thread" pathLength="1" d="M28 196 C 30 130, 120 54, 168 80 L 168 92 L 96 98 L 96 198 C 120 236, 236 156, 288 88 L306 80 Q320 96 334 80 L352 88 L382 112 L370 134 L356 126 L356 208 L284 208 L284 126 L270 134 L258 112 L288 88" stroke-width="2.6"/>
+        <path class="loader-thread loader-thread--late" pathLength="1" d="M356 208 C 394 234, 404 104, 428 82 L512 82 L522 220 L488 220 L470 128 L452 220 L418 220 L428 82" stroke-width="2.6"/>
         <g class="loader-details">
-          <path d="M130 64 V176" stroke-width="1.8" stroke-dasharray="4 5"/>
-          <circle cx="136" cy="84" r="2.2"/><circle cx="136" cy="108" r="2.2"/><circle cx="136" cy="132" r="2.2"/><circle cx="136" cy="156" r="2.2"/>
-          <path d="M116 50 L124 66 L130 62 L136 66 L144 50" stroke-width="2"/>
+          <path d="M320 94 V206" stroke-width="1.8" stroke-dasharray="4 5"/>
+          <circle cx="326" cy="114" r="2.2"/><circle cx="326" cy="138" r="2.2"/><circle cx="326" cy="162" r="2.2"/><circle cx="326" cy="186" r="2.2"/>
+          <path d="M306 80 L314 96 L320 92 L326 96 L334 80" stroke-width="2"/>
         </g>
         <g class="loader-details loader-details--late">
-          <path d="M238 64 H323" stroke-width="2"/>
-          <path d="M280 64 V92" stroke-width="1.8" stroke-dasharray="3 4"/>
-          <path d="M246 64 q6 16 18 16 M314 64 q-6 16 -18 16" stroke-width="1.8"/>
+          <path d="M428 94 H513" stroke-width="2"/>
+          <path d="M470 94 V122" stroke-width="1.8" stroke-dasharray="3 4"/>
+          <path d="M436 94 q6 16 18 16 M504 94 q-6 16 -18 16" stroke-width="1.8"/>
         </g>
       </svg>
       <p class="loader-text">Magus Fashion City</p>
+      <button class="start-btn" id="startBtn" type="button">Start Stitching</button>
     </div>
   </div>
 
