@@ -1,28 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280" fill="none" stroke="#22428c" stroke-opacity="0.075" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-  <!-- shirt -->
-  <path d="M30 34 l14 -7 c3 6 13 6 16 0 l14 7 l6 15 l-10 4 v34 h-36 v-34 l-10 -4 z"/>
-  <path d="M52 33 v54 M47 44 h0.1 M47 56 h0.1 M47 68 h0.1"/>
-  <!-- hanger -->
-  <path d="M168 26 a6 6 0 1 1 6 6 v6 l34 22 h-80 l40 -22"/>
-  <!-- scissors -->
-  <g transform="translate(224 112) rotate(-30)">
-    <circle cx="-14" cy="18" r="7"/><circle cx="14" cy="18" r="7"/>
-    <path d="M-9 13 L10 -26 M9 13 L-10 -26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420" fill="none" stroke="#22428c" stroke-opacity="0.08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- collared shirt -->
+  <g transform="translate(18 20)">
+    <path d="M14 10 l12 -6 q8 9 16 0 l12 6 l12 18 l-10 6 l-6 -4 v40 h-40 v-40 l-6 4 l-10 -6 z"/>
+    <path d="M34 8 v62 M30 22 h0.1 M30 34 h0.1 M30 46 h0.1 M30 58 h0.1 M26 4 l8 10 l8 -10"/>
   </g>
-  <!-- thread spool -->
-  <path d="M92 132 h28 M92 172 h28 M96 132 v40 M116 132 v40 M96 142 h20 M96 150 h20 M96 158 h20 M96 166 h20"/>
-  <path d="M120 150 c18 0 22 22 40 18"/>
-  <!-- button -->
-  <circle cx="34" cy="214" r="13"/>
-  <circle cx="30" cy="210" r="1.6"/><circle cx="38" cy="210" r="1.6"/><circle cx="30" cy="218" r="1.6"/><circle cx="38" cy="218" r="1.6"/>
-  <!-- needle with thread -->
-  <path d="M150 244 L210 196"/>
-  <ellipse cx="212" cy="194.5" rx="3.6" ry="1.6" transform="rotate(-39 212 194.5)"/>
-  <path d="M212 194 c14 -10 26 6 40 -4"/>
+  <!-- t-shirt -->
+  <g transform="translate(132 26) rotate(6)">
+    <path d="M12 6 l12 -4 q10 8 20 0 l12 4 l14 14 l-10 10 l-8 -6 v40 h-36 v-40 l-8 6 l-10 -10 z"/>
+    <path d="M24 2 q10 10 20 0"/>
+  </g>
+  <!-- kids romper -->
+  <g transform="translate(262 22) rotate(-6)">
+    <path d="M12 4 h28 l10 14 l-8 6 l-4 -4 v20 l8 22 h-14 l-6 -14 l-6 14 h-14 l8 -22 v-20 l-4 4 l-8 -6 z"/>
+    <circle cx="26" cy="26" r="4"/>
+  </g>
+  <!-- cap -->
+  <g transform="translate(350 40)">
+    <path d="M6 30 q0 -26 26 -26 q26 0 26 26 z M32 4 v-3 M32 30 q-4 -14 0 -26"/>
+    <path d="M44 30 h22 q-4 8 -22 6"/>
+  </g>
+  <!-- skirt -->
+  <g transform="translate(26 132) rotate(-4)">
+    <path d="M18 2 h36 l18 66 h-72 z M18 10 h36"/>
+    <path d="M28 10 l-8 58 M44 10 l8 58 M36 10 v58" stroke-opacity="0.05"/>
+  </g>
+  <!-- jacket -->
+  <g transform="translate(140 132)">
+    <path d="M18 4 l10 -2 l8 14 l8 -14 l10 2 l14 10 l8 50 l-12 2 l-4 -32 v42 h-48 v-42 l-4 32 l-12 -2 l8 -50 z"/>
+    <path d="M36 16 v62 M28 2 l8 22 l8 -22 M26 52 h8 M46 52 h-6"/>
+  </g>
+  <!-- socks -->
+  <g transform="translate(268 140) rotate(8)">
+    <path d="M8 2 h16 v38 q0 8 8 10 l12 4 q6 4 0 12 l-22 -4 q-14 -2 -14 -18 z M8 12 h16"/>
+    <path d="M40 0 h16 v38 q0 8 8 10 l10 4 q6 4 0 12 l-20 -4 q-14 -2 -14 -18 z M40 10 h16"/>
+  </g>
+  <!-- trousers -->
+  <g transform="translate(356 140)">
+    <path d="M6 2 h40 l4 76 h-16 l-8 -54 l-8 54 h-16 z M6 10 h40 M26 10 v14"/>
+  </g>
   <!-- dress -->
-  <path d="M244 210 h18 l3 14 l12 46 h-48 l12 -46 z M244 224 h21"/>
-  <!-- stitch lines -->
-  <path d="M8 120 H66" stroke-dasharray="6 6"/>
-  <path d="M196 260 H270" stroke-dasharray="6 6"/>
-  <path d="M120 70 Q140 92 132 108" stroke-dasharray="5 6"/>
+  <g transform="translate(30 268) rotate(5)">
+    <path d="M20 4 h8 q4 6 8 0 h8 l4 22 l-6 4 l18 48 h-64 l18 -48 l-6 -4 z M18 30 h28"/>
+  </g>
+  <!-- kids frock -->
+  <g transform="translate(140 276) rotate(-6)">
+    <path d="M16 4 h8 l2 6 h4 l2 -6 h8 l4 16 l-4 2 l14 36 h-48 l14 -36 l-4 -2 z"/>
+    <path d="M10 46 q20 6 44 0" stroke-dasharray="3 4"/>
+  </g>
+  <!-- shorts -->
+  <g transform="translate(250 286)">
+    <path d="M4 4 h50 l4 40 h-22 l-7 -22 l-7 22 h-22 z M4 12 h50"/>
+  </g>
+  <!-- hanger + scarf -->
+  <g transform="translate(336 266)">
+    <path d="M30 8 a5 5 0 1 1 5 5 v5 l28 18 h-66 l33 -18"/>
+    <path d="M10 36 v34 l8 -6 M50 36 v40 l-8 -6" stroke-dasharray="1 0"/>
+  </g>
+  <!-- buttons, needle and thread, stitch lines in between -->
+  <circle cx="110" cy="236" r="9"/><circle cx="107" cy="233" r="1.2"/><circle cx="113" cy="233" r="1.2"/><circle cx="107" cy="239" r="1.2"/><circle cx="113" cy="239" r="1.2"/>
+  <path d="M196 256 L248 238 M252 236 q14 -8 26 4 q10 10 22 0"/>
+  <ellipse cx="250" cy="237" rx="3.4" ry="1.4" transform="rotate(-19 250 237)"/>
+  <path d="M110 120 H230" stroke-dasharray="6 6"/>
+  <path d="M220 398 H330" stroke-dasharray="6 6"/>
+  <path d="M8 380 H90" stroke-dasharray="6 6"/>
 </svg>
