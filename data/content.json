@@ -378,11 +378,18 @@
           "note": "Total spends ÷ leads (lead generation alone: ₹1,917)"
         },
         {
+          "label": "Lead to quality (L2Q%)",
+          "value": "15",
+          "prefix": "",
+          "suffix": "%",
+          "note": "18 of 120 leads qualify"
+        },
+        {
           "label": "Quality leads (QL)",
           "value": "18",
           "prefix": "",
           "suffix": "",
-          "note": "15% of leads qualify"
+          "note": "Meta 10 · Google Search 6 · Demand Gen 2"
         },
         {
           "label": "CPQL",
