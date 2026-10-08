@@ -1020,15 +1020,27 @@
     throw new Error('Could not load presentation content.');
   }
 
-  // the published copy is encrypted: ask for the password on the loader screen
+  // the published copy is encrypted: ask for the password on the loader screen.
+  // box.session marks the current viewing session; when the owner ends all sessions it changes,
+  // which sends every open tab back to the lock screen.
+  const VIEWER_KEY = 'mfc.viewer';
   async function unlockContent(box) {
     // the admin preview gets its content by message, so it never needs the password
     if (IS_PREVIEW) return { settings: { showIntroLoader: false }, sections: [] };
-    const KEY = 'mfc.unlock';
     const tryPassword = async (pw) => JSON.parse(await window.MFC_LOCK.unlock(box, pw));
+    const opened = (content, pw) => {
+      try {
+        sessionStorage.setItem(VIEWER_KEY, JSON.stringify({ pw, session: box.session || '' }));
+      } catch (e) {
+        /* private mode: ask again next time */
+      }
+      watchSession(box.session || '');
+      return content;
+    };
     try {
-      const saved = sessionStorage.getItem(KEY);
-      if (saved) return await tryPassword(saved);
+      const saved = JSON.parse(sessionStorage.getItem(VIEWER_KEY) || 'null');
+      if (saved && saved.session === (box.session || '')) return opened(await tryPassword(saved.pw), saved.pw);
+      sessionStorage.removeItem(VIEWER_KEY);
     } catch (e) {
       /* ask again */
     }
@@ -1044,13 +1056,8 @@
         form.classList.add('is-busy');
         try {
           const content = await tryPassword(input.value);
-          try {
-            sessionStorage.setItem(KEY, input.value);
-          } catch (err) {
-            /* private mode: ask again next time */
-          }
           document.body.classList.remove('is-locked');
-          resolve(content);
+          resolve(opened(content, input.value));
         } catch (err) {
           error.textContent = 'That password is not right. Please try again.';
           input.select();
@@ -1061,6 +1068,24 @@
         form.classList.remove('is-busy');
       });
     });
+  }
+
+  // checks every minute (and when the tab comes back into view) whether sessions were ended
+  function watchSession(session) {
+    const check = async () => {
+      try {
+        const res = await fetch('content.enc.json', { cache: 'no-store' });
+        if (!res.ok) return;
+        const box = await res.json();
+        if ((box.session || '') === session) return;
+        sessionStorage.removeItem(VIEWER_KEY);
+        location.reload();
+      } catch (e) {
+        /* offline: check again later */
+      }
+    };
+    setInterval(check, 60000);
+    document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && check());
   }
 
   async function start() {

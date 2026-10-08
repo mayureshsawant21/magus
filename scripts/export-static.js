@@ -29,7 +29,8 @@ const encFile = path.join(DATA_DIR, 'content.enc.json');
 let locked = false;
 if (process.env.SITE_PASSWORD) {
   const { lock } = require('./lock');
-  fs.writeFileSync(path.join(OUT, 'content.enc.json'), JSON.stringify(lock(fs.readFileSync(contentFile, 'utf8'), process.env.SITE_PASSWORD)) + '\n');
+  const session = fs.existsSync(encFile) ? JSON.parse(fs.readFileSync(encFile, 'utf8')).session || '' : '';
+  fs.writeFileSync(path.join(OUT, 'content.enc.json'), JSON.stringify(lock(fs.readFileSync(contentFile, 'utf8'), process.env.SITE_PASSWORD, session)) + '\n');
   locked = true;
 } else if (fs.existsSync(encFile)) {
   fs.copyFileSync(encFile, path.join(OUT, 'content.enc.json'));

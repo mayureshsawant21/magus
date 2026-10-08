@@ -27,12 +27,13 @@
     return td.decode(plain);
   }
 
-  async function lock(text, password, iter = 250000) {
+  // `session` is carried over unchanged so that saving content does not sign viewers out
+  async function lock(text, password, session = '', iter = 250000) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const k = await key(password, salt, iter);
     const data = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, k, te.encode(text));
-    return { v: 1, kdf: 'PBKDF2-SHA256', iter, salt: toB64(salt), iv: toB64(iv), data: toB64(data) };
+    return { v: 1, kdf: 'PBKDF2-SHA256', iter, session, salt: toB64(salt), iv: toB64(iv), data: toB64(data) };
   }
 
   window.MFC_LOCK = { lock, unlock };

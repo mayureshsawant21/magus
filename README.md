@@ -113,7 +113,8 @@ AES-256-GCM encrypted copy of the content, and the loader screen asks for the pa
 anything is shown. The password is not stored anywhere in the repository.
 
 - Saving in the admin panel re-encrypts the copy (it asks for the presentation password once per tab).
-- To change the password: `SITE_PASSWORD='new password' node scripts/lock.js`, then commit `data/content.enc.json`.
+- To change the password: `SITE_PASSWORD='new password' node scripts/lock.js --end-sessions`, then commit `data/content.enc.json`.
+- To sign everyone out (open tabs go back to the lock screen within a minute): `SITE_PASSWORD='…' node scripts/lock.js --end-sessions`, then commit.
 - Optional: add a repository secret `SITE_PASSWORD` and every build re-encrypts from `data/content.json`.
 - To remove the lock, delete `data/content.enc.json`.
 

@@ -3,7 +3,8 @@
 /* Encrypts the presentation content with the site password, in the format public/js/lock.js
    unlocks (AES-256-GCM, key from PBKDF2-SHA256).
 
-     SITE_PASSWORD=… node scripts/lock.js     writes data/content.enc.json from data/content.json
+     SITE_PASSWORD=… node scripts/lock.js                    writes data/content.enc.json from data/content.json
+     SITE_PASSWORD=… node scripts/lock.js --end-sessions     same, and signs out everyone viewing the deck
 
    The password is never stored in the repository. */
 
@@ -11,13 +12,13 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-function lock(text, password, iter = 250000) {
+function lock(text, password, session = '', iter = 250000) {
   const salt = crypto.randomBytes(16);
   const iv = crypto.randomBytes(12);
   const key = crypto.pbkdf2Sync(password, salt, iter, 32, 'sha256');
   const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
   const data = Buffer.concat([cipher.update(text, 'utf8'), cipher.final(), cipher.getAuthTag()]);
-  return { v: 1, kdf: 'PBKDF2-SHA256', iter, salt: salt.toString('base64'), iv: iv.toString('base64'), data: data.toString('base64') };
+  return { v: 1, kdf: 'PBKDF2-SHA256', iter, session, salt: salt.toString('base64'), iv: iv.toString('base64'), data: data.toString('base64') };
 }
 
 function unlock(box, password) {
@@ -37,7 +38,11 @@ if (require.main === module) {
     process.exit(1);
   }
   const root = path.join(__dirname, '..');
+  const encPath = path.join(root, 'data', 'content.enc.json');
   const text = fs.readFileSync(path.join(root, 'data', 'content.json'), 'utf8');
-  fs.writeFileSync(path.join(root, 'data', 'content.enc.json'), JSON.stringify(lock(text, password)) + '\n');
-  console.log('Wrote data/content.enc.json');
+  const previous = fs.existsSync(encPath) ? JSON.parse(fs.readFileSync(encPath, 'utf8')).session : '';
+  const endSessions = process.argv.includes('--end-sessions') || !previous;
+  const session = endSessions ? crypto.randomBytes(9).toString('base64url') : previous;
+  fs.writeFileSync(encPath, JSON.stringify(lock(text, password, session)) + '\n');
+  console.log(`Wrote data/content.enc.json${endSessions ? ' (new session: open tabs return to the lock screen)' : ''}`);
 }

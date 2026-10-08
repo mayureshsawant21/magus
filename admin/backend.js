@@ -197,7 +197,7 @@
         contentSha = res.content.sha;
         if (encFile) {
           // re-lock the published copy with the new content
-          const box = await window.MFC_LOCK.lock(text, password);
+          const box = await window.MFC_LOCK.lock(text, password, (encFile.box && encFile.box.session) || '');
           const latest = await getFile('data/content.enc.json').catch(() => null);
           const encRes = await putFile('data/content.enc.json', textToB64(JSON.stringify(box) + '\n'), 'Update locked presentation copy', latest ? latest.sha : encFile.sha);
           encFile = { sha: encRes.content.sha, box };
