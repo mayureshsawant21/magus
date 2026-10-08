@@ -568,6 +568,18 @@ body.is-loading { overflow: hidden; }
 .emb-frame { animation: emb-frame 2.4s ease-in-out infinite alternate; }
 .emb-stitch { stroke: #ffffff; stroke-dasharray: 3 4; animation: emb-thread 0.7s linear infinite; }
 .emb-glow { stroke: rgba(196, 211, 245, 0.5); animation: f-pulse 2.6s ease-in-out infinite; }
+.emb-garment { fill: rgba(255, 255, 255, 0.12); stroke: #ffffff; stroke-width: 1.8; }
+.emb-garment-detail { fill: none; stroke: #c4d3f5; stroke-width: 1.3; }
+.emb-out { opacity: 0; animation: emb-out 10s linear infinite; }
+.emb-belt-run { stroke: #c4d3f5; stroke-dasharray: 2 12; animation: emb-belt 0.24s linear infinite; }
+.emb-roller { transform-box: fill-box; transform-origin: 50% 50%; animation: sew-spin 0.9s linear infinite; }
+@keyframes emb-out {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateX(590px); opacity: 0; }
+}
+@keyframes emb-belt { to { stroke-dashoffset: -14; } }
 @keyframes emb-thread { to { stroke-dashoffset: -11; } }
 @keyframes emb-led { 50% { opacity: 0.35; } }
 @keyframes emb-needle { from { transform: translateY(-4px); } to { transform: translateY(1px); } }
@@ -593,6 +605,20 @@ body.is-loading { overflow: hidden; }
 }
 .brief-side { position: sticky; top: 120px; }
 .brief-image { margin-top: 32px; aspect-ratio: 16 / 10; }
+.brief-delivery { margin-top: 48px; max-width: 520px; }
+.dl { display: block; width: 100%; height: auto; overflow: visible; }
+.dl-line { stroke: var(--accent, #22428c); }
+.dl-soft { stroke: #5b7bcb; }
+.dl-fill { fill: #ffffff; }
+.dl-tyre { fill: #ffffff; }
+.dl-art { fill: #e3eaf9; stroke: #22428c; }
+.dl-awning { stroke: #22428c; fill: #e3eaf9; }
+.dl-lamp { fill: #f2b84b; }
+.dl-label { font: 600 9px/1 var(--font, Manrope, sans-serif); letter-spacing: 0.2em; fill: #5b7bcb; }
+.dl-smoke { stroke: #5b7bcb; opacity: 0; animation: dl-smoke 3.2s ease-out infinite; }
+.dl-smoke--late { animation-delay: -1.6s; }
+@keyframes dl-smoke { 0% { opacity: 0; transform: translate(0, 0) scale(0.7); } 25% { opacity: 0.7; } 100% { opacity: 0; transform: translate(14px, -34px) scale(1.5); } }
+.dl-smoke { transform-box: fill-box; transform-origin: 50% 100%; }
 .spec-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .spec {
   display: grid;

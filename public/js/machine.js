@@ -103,8 +103,46 @@ window.MFC_EMBROIDERY = (function () {
 
   const legs = [X0 + 20, 330].map((lx) => `<path class="emb-line" d="M${lx} ${f(botY(lx))} V${f(botY(lx) + 70 - (lx - X0) / 12)} M${lx - 34} ${f(botY(lx) + 70 - (lx - X0) / 12)} H${lx + 34}" stroke-width="2.6"/>`).join('');
 
+  // finished garments leave the machine on a conveyor, in a fixed order:
+  // t-shirt, frock, undergarments, socks, then round again (see .emb-out)
+  const garments = [
+    // men's t-shirt
+    `<path d="M10 -46 L23 -53 Q32 -45 41 -53 L54 -46 L64 -32 L54 -25 L49 -30 V0 H15 V-30 L10 -25 L0 -32 Z"/>
+     <path class="emb-garment-detail" d="M23 -53 Q32 -40 41 -53 M15 -12 H49"/>`,
+    // girls' frock
+    `<path d="M23 -58 L28 -59 Q32 -53 36 -59 L41 -58 L49 -50 L44 -45 L42 -47 L42 -33 L60 0 H4 L22 -33 L22 -47 L20 -45 L15 -50 Z"/>
+     <path class="emb-garment-detail" d="M22 -33 H42 M8 -6 H56 M32 -33 l-3 5 l3 4 l3 -4 z"/>`,
+    // men's briefs + women's bra and panty
+    `<path d="M0 -30 H34 V-7 L25 -3 L17 -15 L9 -3 L0 -7 Z"/>
+     <path class="emb-garment-detail" d="M0 -25 H34"/>
+     <path d="M42 -38 Q44 -54 58 -46 Q72 -54 74 -38 Q66 -34 58 -40 Q50 -34 42 -38 Z M47 -50 L49 -60 M69 -50 L67 -60"/>
+     <path d="M44 -26 H72 L69 -15 Q62 -6 60 0 H56 Q54 -6 47 -15 Z"/>`,
+    // pair of socks
+    `<path d="M4 -58 H18 V-24 Q18 -18 24 -16 L34 -13 Q40 -9 35 -2 L15 -5 Q4 -7 4 -20 Z"/>
+     <path d="M28 -58 H42 V-24 Q42 -18 48 -16 L58 -13 Q64 -9 59 -2 L39 -5 Q28 -7 28 -20 Z"/>
+     <path class="emb-garment-detail" d="M4 -50 H18 M28 -50 H42"/>`
+  ]
+    .map((g, i) => `<g class="emb-out" style="animation-delay:${-(7.5 - i * 2.5)}s"><g class="emb-garment" transform="translate(10 461)">${g}</g></g>`)
+    .join('');
+
+  const output = `
+  <!-- chute from the machine down to the output conveyor -->
+  <path class="emb-fill emb-line" d="M${X0 - 24} ${f(botY(X0) + 18)} L${X0 - 6} ${f(botY(X0) + 26)} L64 402 H10 Z" stroke-width="2.2"/>
+  <!-- conveyor belt -->
+  <g class="emb-belt">
+    <rect class="emb-fill emb-line" x="10" y="462" width="660" height="12" rx="6" stroke-width="2"/>
+    <path class="emb-belt-run" d="M16 462 H664" stroke-width="2"/>
+    ${[22, 180, 340, 500, 658].map((rx) => `<g class="emb-roller"><circle class="emb-soft" cx="${rx}" cy="468" r="4" stroke-width="1.4"/><path class="emb-soft" d="M${rx - 3} 468 H${rx + 3}" stroke-width="1.2"/></g>`).join('')}
+    <path class="emb-soft" d="M40 474 V494 M640 474 V494 M28 494 H52 M628 494 H652" stroke-width="2"/>
+  </g>
+  ${garments}
+  <!-- outlet hood the garments emerge from -->
+  <path class="emb-head" d="M4 402 H70 V462 H4 Z" stroke-width="2.2"/>
+  <path class="emb-soft" d="M12 412 H62 M12 420 H62" stroke-width="1.4"/>
+  <circle class="emb-led" cx="56" cy="440" r="3"/>`;
+
   return `
-<svg class="sew emb" viewBox="0 0 680 440" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<svg class="sew emb" viewBox="0 0 680 500" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
   <!-- overhead thread rack with its posts -->
   <path class="emb-line" d="M${X0 - 14} 58 L${X1 + 10} ${f(rackY(X1) - 8)} M${X0 - 14} 70 L${X1 + 10} ${f(rackY(X1) + 4)}" stroke-width="2.4"/>
   <path class="emb-soft" d="M${X0 - 10} 62 V${f(topY(X0) - 4)} M330 ${f(rackY(330))} V${f(topY(330) - 4)} M${X1} ${f(rackY(X1))} V${f(topY(X1) - 4)}" stroke-width="2"/>
@@ -122,6 +160,6 @@ window.MFC_EMBROIDERY = (function () {
   </g>
   ${headsSvg}
   ${legs}
-  <path class="emb-soft" d="M20 ${f(botY(X0) + 76)} H660" stroke-width="1.4" stroke-dasharray="2 12"/>
+  ${output}
 </svg>`;
 })();

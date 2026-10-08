@@ -123,6 +123,7 @@
             ? `<div class="chip-row" data-stagger>${list(s.channels).map((ch) => `<span class="chip">${esc(ch)}</span>`).join('')}</div>`
             : ''
         }
+        ${s.truck !== false && window.MFC_DELIVERY ? `<div class="brief-delivery">${window.MFC_DELIVERY}</div>` : ''}
         ${s.image ? `<div class="clip-reveal brief-image">${media(s.image, s.title)}</div>` : ''}
       </div>
       <ol class="spec-list">
@@ -730,6 +731,21 @@
         gsap.from(tr, { x: -30, autoAlpha: 0, duration: 0.9, ease: 'power3.out', delay: i * 0.08, scrollTrigger: { trigger: tr.closest('table'), start: 'top 80%' } });
       });
     }
+
+    // brief: the truck drives from the factory to the shop as the slide scrolls in
+    deck.querySelectorAll('.brief-delivery').forEach((scene) => {
+      const truck = scene.querySelector('.dl-truck');
+      const wheels = scene.querySelectorAll('.dl-wheel');
+      const from = 100, to = 270;
+      if (REDUCED) return gsap.set(truck, { x: to });
+      gsap.set(truck, { x: from });
+      gsap.set(wheels, { transformOrigin: '50% 50%' });
+      gsap
+        .timeline({ scrollTrigger: { trigger: scene.closest('.slide'), start: 'top 85%', end: 'top 5%', scrub: 0.6 } })
+        .to(truck, { x: to, ease: 'power1.inOut', duration: 1 }, 0)
+        .to(wheels, { rotation: ((to - from) / (2 * Math.PI * 10)) * 360, ease: 'power1.inOut', duration: 1 }, 0)
+        .to(truck.querySelector('.dl-body'), { y: -1.2, duration: 0.08, repeat: 11, yoyo: true, ease: 'sine.inOut' }, 0.02);
+    });
 
     // bars, split charts and rings animate via a class toggle
     deck.querySelectorAll('.split-bar, .compare-group, .ring').forEach((el) => {

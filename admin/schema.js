@@ -74,9 +74,10 @@
           { key: 'value', label: 'Value', type: 'text', accent: true }
         ] },
         { key: 'channels', label: 'Channel chips', type: 'strings', itemLabel: 'Chip' },
+        { key: 'truck', label: 'Show the factory-to-shop delivery truck', type: 'toggle' },
         { key: 'image', label: 'Image', type: 'image' }
       ],
-      defaults: { eyebrow: 'Eyebrow', title: 'New *brief*', items: [], channels: [], image: '' }
+      defaults: { eyebrow: 'Eyebrow', title: 'New *brief*', items: [], channels: [], truck: true, image: '' }
     },
     table: {
       label: 'Table (media plan)',
