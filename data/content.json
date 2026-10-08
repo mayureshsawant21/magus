@@ -107,7 +107,7 @@
       "number": "01",
       "eyebrow": "Part One",
       "title": "Digital *Media Plan*",
-      "subtitle": "Thirty days of paid media across Meta, Google Search, Demand Gen, YouTube and DV360, split between lead generation and awareness.",
+      "subtitle": "Thirty days of paid media across Meta, Google Search, Demand Gen, YouTube and GDN, split between lead generation and awareness.",
       "image": "",
       "art": "embroidery"
     },
@@ -143,7 +143,7 @@
         {
           "icon": "megaphone",
           "label": "Channels",
-          "value": "Meta, Google Search, Demand Gen, YT, DV360"
+          "value": "Meta, Google Search, Demand Gen, YT, GDN"
         }
       ],
       "channels": [],
@@ -189,14 +189,14 @@
           "1.10%",
           "5,90,909",
           "220",
-          "1,900",
-          "68",
-          "1.05%",
+          "1,512",
+          "86",
+          "1.32%",
           "12%",
-          "8",
-          "25%",
-          "2",
-          "15,833"
+          "10",
+          "40%",
+          "4",
+          "13,000"
         ],
         [
           "Google Search",
@@ -208,14 +208,14 @@
           "5.00%",
           "28,000",
           "2,500",
-          "3,500",
-          "20",
-          "1.43%",
+          "2,800",
+          "25",
+          "1.79%",
           "25%",
-          "5",
-          "32%",
-          "2",
-          "14,000"
+          "6",
+          "50%",
+          "3",
+          "11,667"
         ],
         [
           "Google Demand Gen",
@@ -227,14 +227,14 @@
           "0.80%",
           "2,50,000",
           "120",
-          "4,300",
-          "7",
-          "0.35%",
+          "3,333",
+          "9",
+          "0.45%",
           "22%",
           "2",
-          "20%",
+          "0%",
           "0",
-          "19,545"
+          "15,000"
         ],
         [
           "Lead generation total",
@@ -246,14 +246,14 @@
           "1.14%",
           "8,68,909",
           "265",
-          "2,411",
-          "95",
-          "0.96%",
-          "15.5%",
-          "15",
-          "26.9%",
-          "4",
-          "15,598"
+          "1,917",
+          "120",
+          "1.21%",
+          "15.0%",
+          "18",
+          "38.9%",
+          "7",
+          "12,778"
         ]
       ],
       "highlightLastRow": true,
@@ -300,8 +300,8 @@
           "0.50"
         ],
         [
-          "DV360",
-          "Display and native on trade, business and regional news sites; retargeting pool for lead gen",
+          "GDN (Google Display Network)",
+          "Responsive display ads on business, trade and regional news sites; retargeting pool for lead gen",
           "25,000",
           "36%",
           "140",
@@ -314,7 +314,7 @@
         ],
         [
           "Meta (Facebook + Instagram)",
-          "Reach and ThruPlay video in Reels and feed",
+          "Reach campaign with video in Reels and feed",
           "15,000",
           "21%",
           "60",
@@ -365,45 +365,45 @@
         },
         {
           "label": "Leads",
-          "value": "95",
+          "value": "120",
           "prefix": "",
           "suffix": "",
-          "note": "Meta 68 · Google Search 20 · Demand Gen 7"
+          "note": "Meta 86 · Google Search 25 · Demand Gen 9"
         },
         {
           "label": "CPL",
-          "value": "3158",
+          "value": "2500",
           "prefix": "₹",
           "suffix": "",
-          "note": "Total spends ÷ leads (lead generation alone: ₹2,411)"
+          "note": "Total spends ÷ leads (lead generation alone: ₹1,917)"
         },
         {
           "label": "Quality leads (QL)",
-          "value": "15",
+          "value": "18",
           "prefix": "",
           "suffix": "",
-          "note": "15.5% of leads qualify"
+          "note": "15% of leads qualify"
         },
         {
           "label": "CPQL",
-          "value": "20000",
+          "value": "16667",
           "prefix": "₹",
           "suffix": "",
-          "note": "Total spends ÷ quality leads (lead generation alone: ₹15,598)"
+          "note": "Total spends ÷ quality leads (lead generation alone: ₹12,778)"
         },
         {
           "label": "Site visits (SV)",
-          "value": "4",
+          "value": "7",
           "prefix": "",
           "suffix": "",
-          "note": "26.9% of quality leads book a visit"
+          "note": "Meta 4 · Google 3 (38.9% of quality leads)"
         },
         {
           "label": "CPSV",
-          "value": "75000",
+          "value": "42857",
           "prefix": "₹",
           "suffix": "",
-          "note": "Total spends ÷ site visits"
+          "note": "Total spends ÷ site visits (lead generation alone: ₹32,857)"
         }
       ],
       "splitTitle": "Spends by objective",
@@ -431,7 +431,7 @@
         },
         {
           "label": "Campaign types",
-          "value": "Instant-form lead ads with 3 qualifying questions, Click-to-WhatsApp, Reach (awareness), ThruPlay video in Reels & feed",
+          "value": "Instant-form lead ads with 3 qualifying questions, Click-to-WhatsApp, Reach (awareness)",
           "style": "chips"
         },
         {
@@ -485,13 +485,13 @@
         },
         {
           "label": "Leads",
-          "value": "68",
+          "value": "86",
           "prefix": "",
           "suffix": ""
         },
         {
           "label": "CPL",
-          "value": "1900",
+          "value": "1512",
           "prefix": "₹",
           "suffix": ""
         }
@@ -551,13 +551,13 @@
         },
         {
           "label": "Leads",
-          "value": "20",
+          "value": "25",
           "prefix": "",
           "suffix": ""
         },
         {
           "label": "CPL",
-          "value": "3500",
+          "value": "2800",
           "prefix": "₹",
           "suffix": ""
         }
@@ -621,7 +621,7 @@
         },
         {
           "label": "Affinity audiences (examples)",
-          "value": "Business Professionals, Avid Business News Readers, Avid Investors, Fashionistas, Shoppers: Value Shoppers",
+          "value": "Business Professionals, Avid Business News Readers, Avid Investors, Fashionistas, Textile & Apparel Industry Professionals, Fabric & Garment Trade Enthusiasts",
           "style": "chips"
         },
         {
@@ -657,78 +657,6 @@
           "label": "CPV",
           "value": "0.50",
           "prefix": "₹",
-          "suffix": ""
-        }
-      ]
-    },
-    {
-      "id": "dv360",
-      "type": "channel",
-      "enabled": true,
-      "theme": "light",
-      "navLabel": "DV360 Targeting",
-      "eyebrow": "Channel 04",
-      "title": "DV360 *Targeting*",
-      "lede": "Display and native ads on premium business, trade and regional news sites, building a retargeting pool that lead generation converts.",
-      "details": [
-        {
-          "label": "Locations",
-          "value": "Mumbai, Thane, Kalyan, Bhiwandi, Navi Mumbai, Ambernath, Badlapur",
-          "style": "chips"
-        },
-        {
-          "label": "Formats",
-          "value": "Display banners, Native ads, Retargeting",
-          "style": "chips"
-        },
-        {
-          "label": "Premium business sites",
-          "value": "The Economic Times (Business news), Business Standard (Business news), Mint (Business news), Moneycontrol (Markets & SMEs), Financial Express (Business news), BusinessLine (Industry & trade), CNBC-TV18 (Business news), Business Today (Business news)",
-          "style": "tiles"
-        },
-        {
-          "label": "Manufacturing & textile trade sites",
-          "value": "Fibre2Fashion (Textile & apparel trade), Apparel Resources (Garment manufacturing), Textile Value Chain (Textile industry), Indian Textile Magazine (Textile industry), IndiaMART (B2B marketplace), TradeIndia (B2B marketplace), SMBStory by YourStory (SME stories)",
-          "style": "tiles"
-        },
-        {
-          "label": "Regional news sites",
-          "value": "Lokmat (Marathi), Maharashtra Times (Marathi), Divya Bhaskar (Gujarati), Navbharat Times (Hindi)",
-          "style": "tiles"
-        },
-        {
-          "label": "Audiences",
-          "value": "Business decision makers, SME & MSME owners, Textile & apparel industry, Website visitor retargeting, Video viewer retargeting",
-          "style": "chips"
-        }
-      ],
-      "textAds": [],
-      "creativesTitle": "Display creatives",
-      "creatives": [],
-      "adPreview": {
-        "enabled": false,
-        "headline": "",
-        "url": "",
-        "description": "",
-        "sitelinks": []
-      },
-      "metrics": [
-        {
-          "label": "Spends",
-          "value": "25000",
-          "prefix": "₹",
-          "suffix": ""
-        },
-        {
-          "label": "Impressions",
-          "value": "178571",
-          "prefix": "",
-          "suffix": ""
-        },
-        {
-          "label": "Reach",
-          "value": "44643",
-          "prefix": "",
           "suffix": ""
         }
       ]
@@ -924,7 +852,7 @@
         {
           "icon": "newspaper",
           "title": "Banner ads on premium news sites",
-          "text": "High-visibility display on the sites business owners read every day, bought directly or through DV360 private deals.",
+          "text": "High-visibility display on the sites business owners read every day, bought directly from publishers or through Google Display Network placements.",
           "chips": "Moneycontrol, Times of India, Economic Times, Business Standard, CNBC-TV18, India Today, Hindustan Times, NDTV, Mint, The Hindu, Zee Business, Times Internet network",
           "tag": "",
           "wide": false
