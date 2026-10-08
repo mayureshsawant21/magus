@@ -619,6 +619,26 @@ body.is-loading { overflow: hidden; }
 .dl-smoke--late { animation-delay: -1.6s; }
 @keyframes dl-smoke { 0% { opacity: 0; transform: translate(0, 0) scale(0.7); } 25% { opacity: 0.7; } 100% { opacity: 0; transform: translate(14px, -34px) scale(1.5); } }
 .dl-smoke { transform-box: fill-box; transform-origin: 50% 100%; }
+/* the truck leaves the factory, drives slowly to the shop, unloads, then the next one sets off */
+.dl-truck { animation: dl-drive 12s infinite; }
+.dl-wheel { transform-box: fill-box; transform-origin: 50% 50%; animation: dl-wheel 12s infinite; }
+.dl-body { animation: dl-bump 0.6s ease-in-out infinite alternate; }
+@keyframes dl-drive {
+  0% { transform: translateX(100px); opacity: 0; animation-timing-function: ease-out; }
+  5% { transform: translateX(104px); opacity: 1; animation-timing-function: ease-in-out; }
+  72% { transform: translateX(270px); opacity: 1; }
+  90% { transform: translateX(270px); opacity: 1; }
+  97%, 100% { transform: translateX(270px); opacity: 0; }
+}
+@keyframes dl-wheel {
+  0% { transform: rotate(0deg); animation-timing-function: ease-out; }
+  5% { transform: rotate(23deg); animation-timing-function: ease-in-out; }
+  72%, 100% { transform: rotate(975deg); }
+}
+@keyframes dl-bump { from { transform: translateY(0); } to { transform: translateY(-1px); } }
+@media (prefers-reduced-motion: reduce) {
+  .dl-truck { animation: none !important; transform: translateX(270px); }
+}
 .spec-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .spec {
   display: grid;

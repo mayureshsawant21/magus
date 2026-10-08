@@ -1,6 +1,6 @@
 /* Delivery scene for the campaign brief: a truck painted with garment designs
-   drives from the factory to a retail shop as the slide scrolls in. The drive is
-   scrubbed by ScrollTrigger in app.js; smoke and lights are CSS (.dl-* in style.css). */
+   drives slowly from the factory to a retail shop, on a loop. All motion is CSS
+   (.dl-* in style.css). */
 window.MFC_DELIVERY = `
 <svg class="dl" viewBox="0 0 560 200" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
   <!-- factory -->
@@ -32,7 +32,7 @@ window.MFC_DELIVERY = `
   <path class="dl-line" d="M0 184 H560" stroke-width="1.6"/>
   <path class="dl-soft" d="M130 190 H428" stroke-width="1.4" stroke-dasharray="10 10"/>
 
-  <!-- the truck, moved along the road by scroll -->
+  <!-- the truck, driving along the road on a loop -->
   <g class="dl-truck">
     <g class="dl-body">
       <rect class="dl-fill dl-line" x="0" y="118" width="104" height="52" rx="4" stroke-width="2.2"/>
