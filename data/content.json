@@ -44,15 +44,39 @@
       "navLabel": "The Project",
       "eyebrow": "The Project",
       "title": "India's first complete *fashion ecosystem*.",
-      "body": "Magus Fashion City is a 74-acre industrial ecosystem in Kongaon, Bhiwandi, built only for fashion, apparel and allied trades. Suvesha brings extra-large galas for bigger players, with goods lifts, truck access and a ready community of manufacturers next door.",
+      "body": "Magus Fashion City is an industrial ecosystem in Kongaon, Bhiwandi, built only for fashion, apparel and allied trades. Suvesha brings large and extra-large galas from 2,481 to 3,230 sq ft, with 40 ft container compatibility, 16 high-capacity passenger and goods lifts and a ready community of manufacturers next door.",
       "image": "assets/img/aerial-park.svg",
       "imageCaption": "Master plan · Kongaon, Bhiwandi",
       "stats": [
         {
-          "value": "74",
+          "value": "3299",
           "prefix": "",
+          "suffix": "sq ft+",
+          "label": "Built-up area"
+        },
+        {
+          "value": "10",
+          "prefix": "G+",
           "suffix": "",
-          "label": "Acres of fashion manufacturing"
+          "label": "RCC structure"
+        },
+        {
+          "value": "26",
+          "prefix": "",
+          "suffix": "ft",
+          "label": "Expansive width"
+        },
+        {
+          "value": "50",
+          "prefix": "",
+          "suffix": "%",
+          "label": "Mezzanine"
+        },
+        {
+          "value": "16",
+          "prefix": "",
+          "suffix": "ft",
+          "label": "Floor-to-floor height"
         },
         {
           "value": "940",

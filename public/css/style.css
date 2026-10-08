@@ -523,6 +523,8 @@ body.is-loading { overflow: hidden; }
   font-variant-numeric: tabular-nums;
 }
 .stat-label { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.stat-value { white-space: nowrap; }
+.stat-value .count-suf { margin-left: 0.08em; font-size: 0.5em; letter-spacing: -0.01em; }
 .intro-figure { margin: 0; }
 .clip-reveal.tall { aspect-ratio: 4 / 5; border: 1px solid var(--line); }
 

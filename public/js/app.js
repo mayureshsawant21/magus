@@ -54,7 +54,7 @@
 
   const counter = (value, prefix = '', suffix = '') => {
     const dec = typeof value === 'number' ? 0 : decimals(value);
-    return `<span class="count" data-count="${num(value)}" data-dec="${dec}" data-prefix="${esc(prefix)}" data-suffix="${esc(suffix)}">${esc(prefix)}${fmt(num(value), dec)}${esc(suffix)}</span>`;
+    return `<span class="count" data-count="${num(value)}" data-dec="${dec}">${prefix ? `<span class="count-pre">${esc(prefix)}</span>` : ''}<span class="count-num">${fmt(num(value), dec)}</span>${suffix ? `<span class="count-suf">${esc(suffix)}</span>` : ''}</span>`;
   };
 
   /* ---------------------------------------------------------------- renderers */
@@ -613,15 +613,14 @@
 
   function animateCount(el) {
     const end = parseFloat(el.dataset.count) || 0;
-    const pre = el.dataset.prefix || '';
-    const suf = el.dataset.suffix || '';
+    const out = el.querySelector('.count-num') || el;
     const dec = Number(el.dataset.dec) || 0;
     const obj = { v: 0 };
     gsap.to(obj, {
       v: end,
       duration: 1.8,
       ease: 'power3.out',
-      onUpdate: () => (el.textContent = pre + fmt(obj.v, dec) + suf),
+      onUpdate: () => (out.textContent = fmt(obj.v, dec)),
       scrollTrigger: { trigger: el, start: 'top 90%', once: true }
     });
   }
