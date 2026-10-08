@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: 20
       - name: Build static site
+        # optional: a SITE_PASSWORD repository secret re-encrypts the content on every build
+        env:
+          SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
         run: node scripts/export-static.js
       # If Settings → Pages → Source is still "Deploy from a branch", GitHub also publishes the raw
       # repository (the README) on every push. Wait for that build so this deploy lands last.

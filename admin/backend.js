@@ -110,6 +110,40 @@
     };
     const readJSON = async (p, ref) => JSON.parse(b64ToText((await getFile(p, ref)).content));
 
+    // The presentation password, needed to re-encrypt the locked copy. Checked against the
+    // current encrypted file and kept for this tab only.
+    let encFile = null;
+    async function sitePassword() {
+      const ok = async (pw) => {
+        try {
+          await window.MFC_LOCK.unlock(encFile.box, pw);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      };
+      let pw = null;
+      try {
+        pw = sessionStorage.getItem('mfc.unlock');
+      } catch (e) {
+        /* ignore */
+      }
+      if (pw && (await ok(pw))) return pw;
+      let ask = 'The presentation is password locked. Enter its password to publish this save:';
+      for (;;) {
+        pw = window.prompt(ask);
+        if (pw === null) throw new Error('Not saved: the presentation password is needed to publish the locked deck.');
+        if (await ok(pw)) break;
+        ask = 'That password did not match the locked presentation. Try again:';
+      }
+      try {
+        sessionStorage.setItem('mfc.unlock', pw);
+      } catch (e) {
+        /* ignore */
+      }
+      return pw;
+    }
+
     return {
       mode: 'github',
       cfg,
@@ -124,6 +158,14 @@
       },
 
       async load() {
+        // a locked deck keeps an encrypted copy next to the content; saves must refresh it
+        try {
+          const e = await getFile('data/content.enc.json');
+          encFile = { sha: e.sha, box: JSON.parse(b64ToText(e.content)) };
+        } catch (e) {
+          if (e.status !== 404) throw e;
+          encFile = null;
+        }
         try {
           const f = await getFile('data/content.json');
           contentSha = f.sha;
@@ -138,8 +180,10 @@
       defaults: () => readJSON('data/content.default.json'),
 
       async save(content) {
-        const body = textToB64(JSON.stringify(content, null, 2) + '\n');
+        const text = JSON.stringify(content, null, 2) + '\n';
+        const body = textToB64(text);
         const msg = 'Update presentation content';
+        const password = encFile ? await sitePassword() : null;
         let res;
         try {
           res = await putFile('data/content.json', body, msg, contentSha);
@@ -151,6 +195,14 @@
           res = await putFile('data/content.json', body, msg, contentSha);
         }
         contentSha = res.content.sha;
+        if (encFile) {
+          // re-lock the published copy with the new content
+          const box = await window.MFC_LOCK.lock(text, password);
+          const latest = await getFile('data/content.enc.json').catch(() => null);
+          const encRes = await putFile('data/content.enc.json', textToB64(JSON.stringify(box) + '\n'), 'Update locked presentation copy', latest ? latest.sha : encFile.sha);
+          encFile = { sha: encRes.content.sha, box };
+          res = encRes;
+        }
         return { message: 'Saved to GitHub. The live site updates in about a minute.', commit: res.commit.sha };
       },
 

@@ -1007,15 +1007,60 @@
   }
 
   async function loadContent() {
-    for (const url of ['/api/content', 'api/content', 'content.json']) {
+    for (const url of ['/api/content', 'api/content', 'content.enc.json', 'content.json']) {
       try {
         const res = await fetch(url, { cache: 'no-store' });
-        if (res.ok) return await res.json();
+        if (!res.ok) continue;
+        const data = await res.json();
+        return data.iv && data.data ? await unlockContent(data) : data;
       } catch (e) {
         /* try the next source */
       }
     }
     throw new Error('Could not load presentation content.');
+  }
+
+  // the published copy is encrypted: ask for the password on the loader screen
+  async function unlockContent(box) {
+    // the admin preview gets its content by message, so it never needs the password
+    if (IS_PREVIEW) return { settings: { showIntroLoader: false }, sections: [] };
+    const KEY = 'mfc.unlock';
+    const tryPassword = async (pw) => JSON.parse(await window.MFC_LOCK.unlock(box, pw));
+    try {
+      const saved = sessionStorage.getItem(KEY);
+      if (saved) return await tryPassword(saved);
+    } catch (e) {
+      /* ask again */
+    }
+    const form = document.getElementById('lockForm');
+    const input = document.getElementById('lockInput');
+    const error = document.getElementById('lockError');
+    document.body.classList.add('is-locked');
+    input.focus();
+    return new Promise((resolve) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        error.textContent = '';
+        form.classList.add('is-busy');
+        try {
+          const content = await tryPassword(input.value);
+          try {
+            sessionStorage.setItem(KEY, input.value);
+          } catch (err) {
+            /* private mode: ask again next time */
+          }
+          document.body.classList.remove('is-locked');
+          resolve(content);
+        } catch (err) {
+          error.textContent = 'That password is not right. Please try again.';
+          input.select();
+          form.classList.remove('is-shake');
+          void form.offsetWidth;
+          form.classList.add('is-shake');
+        }
+        form.classList.remove('is-busy');
+      });
+    });
   }
 
   async function start() {

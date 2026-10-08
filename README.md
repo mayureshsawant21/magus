@@ -105,3 +105,17 @@ To make a new field editable, add it to the slide type in `admin/schema.js` and 
 - The Google CPL is shown as ₹4,814 (₹1,30,000 ÷ 27 leads). The source deck reads "4,8,14".
 - The search ad on the Google slide is an illustrative preview and is labelled as such on the slide.
 - The illustrations are vector artwork made for this presentation. Replace any of them with real site photos or videos from the admin panel.
+
+## Password lock
+
+The published deck is password protected. GitHub Pages only serves `content.enc.json`, an
+AES-256-GCM encrypted copy of the content, and the loader screen asks for the password before
+anything is shown. The password is not stored anywhere in the repository.
+
+- Saving in the admin panel re-encrypts the copy (it asks for the presentation password once per tab).
+- To change the password: `SITE_PASSWORD='new password' node scripts/lock.js`, then commit `data/content.enc.json`.
+- Optional: add a repository secret `SITE_PASSWORD` and every build re-encrypts from `data/content.json`.
+- To remove the lock, delete `data/content.enc.json`.
+
+The repository itself is public, so `data/content.json` can still be read on GitHub. Make the
+repository private to close that too.

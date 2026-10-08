@@ -44,6 +44,14 @@
         </g>
       </svg>
       <p class="loader-text">Magus Fashion City</p>
+      <form class="lock-form" id="lockForm" autocomplete="off">
+        <label class="lock-label" for="lockInput">This presentation is private. Enter the password to open it.</label>
+        <div class="lock-row">
+          <input class="lock-input" id="lockInput" type="password" placeholder="Password" autocomplete="current-password" required>
+          <button class="lock-btn" type="submit">Unlock</button>
+        </div>
+        <p class="lock-error" id="lockError" role="alert"></p>
+      </form>
       <button class="start-btn" id="startBtn" type="button">Start Stitching</button>
     </div>
   </div>
@@ -100,6 +108,7 @@
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis.min.js"></script>
+  <script src="js/lock.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/machine.js"></script>
   <script src="js/factory.js"></script>
